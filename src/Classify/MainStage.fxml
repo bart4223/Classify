@@ -1,0 +1,7 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane id="AnchorPane" xmlns:fx="http://javafx.com/fxml" fx:controller="Classify.MainStageController">
+    <Button id="ShowBubbleSort" layoutX="10" layoutY="10" text="Show Bubble Sort" onAction="#handleBSAction" fx:id="ShowBubbleSort" />
+</AnchorPane>
