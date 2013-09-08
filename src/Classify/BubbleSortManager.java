@@ -3,6 +3,7 @@ package Classify;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class BubbleSortManager {
@@ -28,9 +29,10 @@ public class BubbleSortManager {
         try {
             lXMLLoader.load();
             StageController = (BubbleSortStageController)lXMLLoader.getController();
+            StageController.BubbleSortManager = this;
             Parent lRoot = lXMLLoader.getRoot();
-            Stage.setTitle("Bubblesort");
-            Stage.setScene(new Scene(lRoot, 800, 800));
+            Stage.setTitle("Classify-Bubblesort");
+            Stage.setScene(new Scene(lRoot, 800, 800, Color.DARKGRAY));
         }
         catch( Exception e)
         {

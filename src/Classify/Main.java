@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.paint.Color;
 
 public class Main extends Application {
 
@@ -20,7 +21,7 @@ public class Main extends Application {
         FMainStageController = (MainStageController)lXMLLoader.getController();
         FMainStageController.Application = this;
         primaryStage.setTitle("Classify");
-        primaryStage.setScene(new Scene(lMainRoot, 500, 500));
+        primaryStage.setScene(new Scene(lMainRoot, 500, 500, Color.DARKGRAY));
         primaryStage.show();
         FBubbleSortManager = new BubbleSortManager(this);
     }
