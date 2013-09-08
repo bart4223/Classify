@@ -4,4 +4,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <AnchorPane id="AnchorPane" xmlns:fx="http://javafx.com/fxml" fx:controller="Classify.MainStageController">
     <Button id="ShowBubbleSort" layoutX="10" layoutY="10" text="Show Bubble Sort" onAction="#handleShowBSAction" fx:id="ShowBubbleSort" />
+    <Button id="Run" layoutX="10" layoutY="40" text="Run" onAction="#handleRunAction" fx:id="Run" />
+    <Button id="Cancel" layoutX="100" layoutY="40" text="Cancel" onAction="#handleCancelAction" fx:id="Cancel" />
 </AnchorPane>

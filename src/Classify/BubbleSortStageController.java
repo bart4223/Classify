@@ -26,37 +26,46 @@ public class BubbleSortStageController implements Initializable {
     }
 
     protected void PaintAxis() {
-        gc.setStroke(Color.BLACK);
-        gc.setLineWidth(1);
         gc.beginPath();
         gc.moveTo(10,10);
         gc.lineTo(10,Canvas.getHeight()-10);
         gc.lineTo(Canvas.getHeight()-10,Canvas.getWidth()-10);
+        gc.setStroke(Color.DARKRED);
+        gc.setLineWidth(2);
         gc.stroke();
         gc.closePath();
+    }
+
+    protected void PaintElements() {
+        if (FElements != null && FElements.size()>0) {
+            Integer i = 0;
+            Iterator<Integer> iterator = FElements.iterator();
+            gc.beginPath();
+            while (iterator.hasNext()) {
+                gc.moveTo(10+i+2,Canvas.getHeight()-12);
+                gc.lineTo(10+i+2,Canvas.getHeight()-12-iterator.next()*Canvas.getHeight()/10);
+                i += 1;
+            }
+            gc.setStroke(Color.DARKGREEN);
+            gc.setLineWidth(2);
+            gc.stroke();
+            gc.closePath();
+        }
     }
 
     public BubbleSortManager BubbleSortManager;
 
     public BubbleSortStageController() {
-        FElements = new ArrayList<Integer>();
     }
 
     public void SetElements (ArrayList<Integer> aElements) {
-        FElements.clear();
-        Iterator<Integer> iterator = aElements.iterator();
-        while (iterator.hasNext()) {
-            FElements.add(iterator.next());
-        }
+        FElements = aElements;
     }
 
     public void RenderScene() {
         ClearCanvas();
         PaintAxis();
-        Iterator<Integer> iterator = FElements.iterator();
-        while (iterator.hasNext()) {
-
-        }
+        PaintElements();
     }
 
     @Override

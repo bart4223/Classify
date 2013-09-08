@@ -7,11 +7,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Main extends Application {
 
+    TimerTask FTimerTask = new TimerTask() {
+        public synchronized void run() {
+            Sort();
+        }
+    };
+
     protected MainStageController FMainStageController;
     protected BubbleSortManager FBubbleSortManager;
+    protected Timer FTimer;
+    protected Boolean FTimerRunning = false;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -24,6 +34,12 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(lMainRoot, 500, 500, Color.DARKGRAY));
         primaryStage.show();
         FBubbleSortManager = new BubbleSortManager(this);
+        FTimer = new Timer();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        Cancel();
     }
 
     public static void main(String[] args) {
@@ -33,4 +49,22 @@ public class Main extends Application {
     public void ShowBubbleSortStage(){
         FBubbleSortManager.ShowStage();
     }
+
+    public void Run(){
+        if (!FTimerRunning) {
+            FTimerRunning = !FTimerRunning;
+            FBubbleSortManager.DemoInitElements();
+            FTimer.schedule(FTimerTask,1000,1000);
+        }
+    }
+
+    public void Cancel(){
+        FTimer.cancel();
+        FTimerRunning = false;
+    }
+
+    public void Sort() {
+        FBubbleSortManager.Sort();
+    }
+
 }
