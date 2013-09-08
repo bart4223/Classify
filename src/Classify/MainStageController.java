@@ -8,7 +8,7 @@ public class MainStageController {
     public Main Application;
 
     @FXML
-    private void handleBSAction(ActionEvent event) {
-
+    private void handleShowBSAction(ActionEvent event) {
+       Application.ShowBubbleSortStage();
     }
 }

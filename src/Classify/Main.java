@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     protected MainStageController FMainStageController;
+    protected BubbleSortManager FBubbleSortManager;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -21,9 +22,14 @@ public class Main extends Application {
         primaryStage.setTitle("Classify");
         primaryStage.setScene(new Scene(lMainRoot, 500, 500));
         primaryStage.show();
+        FBubbleSortManager = new BubbleSortManager(this);
     }
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public void ShowBubbleSortStage(){
+        FBubbleSortManager.ShowStage();
     }
 }
