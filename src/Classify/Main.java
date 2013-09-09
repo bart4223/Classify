@@ -32,6 +32,7 @@ public class Main extends Application {
         FMainStageController.Application = this;
         primaryStage.setTitle("Classify");
         primaryStage.setScene(new Scene(lMainRoot, 500, 500, Color.DARKGRAY));
+        primaryStage.setResizable(false);
         primaryStage.show();
         FBubbleSortManager = new BubbleSortManager(this);
         FTimer = new Timer();
@@ -53,8 +54,8 @@ public class Main extends Application {
     public void Run(){
         if (!FTimerRunning) {
             FTimerRunning = !FTimerRunning;
-            FBubbleSortManager.DemoInitElements();
-            FTimer.schedule(FTimerTask,1000,1000);
+            FBubbleSortManager.InitElements();
+            FTimer.schedule(FTimerTask,1000,100);
         }
     }
 
@@ -63,8 +64,8 @@ public class Main extends Application {
         FTimerRunning = false;
     }
 
-    public void Sort() {
-        FBubbleSortManager.Sort();
+    public synchronized void Sort() {
+        FBubbleSortManager.SortElements();
     }
 
 }

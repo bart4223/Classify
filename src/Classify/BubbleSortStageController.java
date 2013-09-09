@@ -15,9 +15,9 @@ public class BubbleSortStageController implements Initializable {
     @FXML
     private Canvas Canvas;
 
-    private GraphicsContext gc;
-
+    protected GraphicsContext gc;
     protected ArrayList<Integer> FElements;
+    protected Integer FElementLineWidth;
 
     protected void ClearCanvas() {
         gc.setFill(Color.LIGHTGRAY);
@@ -42,12 +42,12 @@ public class BubbleSortStageController implements Initializable {
             Iterator<Integer> iterator = FElements.iterator();
             gc.beginPath();
             while (iterator.hasNext()) {
-                gc.moveTo(10+i+2,Canvas.getHeight()-12);
-                gc.lineTo(10+i+2,Canvas.getHeight()-12-iterator.next()*Canvas.getHeight()/10);
-                i += 1;
+                gc.moveTo(10+i+FElementLineWidth,Canvas.getHeight()-10-FElementLineWidth);
+                gc.lineTo(10+i+FElementLineWidth,Canvas.getHeight()-10-FElementLineWidth-iterator.next());
+                i = i + FElementLineWidth;
             }
             gc.setStroke(Color.DARKGREEN);
-            gc.setLineWidth(2);
+            gc.setLineWidth(FElementLineWidth);
             gc.stroke();
             gc.closePath();
         }
@@ -56,6 +56,7 @@ public class BubbleSortStageController implements Initializable {
     public BubbleSortManager BubbleSortManager;
 
     public BubbleSortStageController() {
+        FElementLineWidth = 10;
     }
 
     public void SetElements (ArrayList<Integer> aElements) {
@@ -64,7 +65,6 @@ public class BubbleSortStageController implements Initializable {
 
     public void RenderScene() {
         ClearCanvas();
-        PaintAxis();
         PaintElements();
     }
 

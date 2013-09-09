@@ -2,8 +2,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane id="AnchorPane" xmlns:fx="http://javafx.com/fxml" fx:controller="Classify.MainStageController">
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<HBox id="ControlPane" prefHeight="200" alignment="TOP_LEFT" spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="Classify.MainStageController">
+    <padding><Insets top="15" right="10" bottom="15" left="10"/></padding>
     <Button id="ShowBubbleSort" layoutX="10" layoutY="10" text="Show Bubble Sort" onAction="#handleShowBSAction" fx:id="ShowBubbleSort" />
     <Button id="Run" layoutX="10" layoutY="40" text="Run" onAction="#handleRunAction" fx:id="Run" />
     <Button id="Cancel" layoutX="100" layoutY="40" text="Cancel" onAction="#handleCancelAction" fx:id="Cancel" />
-</AnchorPane>
+</HBox>

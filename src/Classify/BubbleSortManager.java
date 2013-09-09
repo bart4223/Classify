@@ -29,7 +29,7 @@ public class BubbleSortManager {
         FStage.show();
     }
 
-    public void Sort(){
+    public void SortElements(){
         FAlgorithm.Sort(FElements);
         if (FStageController != null) {
             FStageController.SetElements(FElements);
@@ -37,13 +37,18 @@ public class BubbleSortManager {
         }
     }
 
+    public  void InitElements() {
+        DemoInitElements();
+        FAlgorithm.Init(FElements,true);
+    }
+
     public void DemoInitElements() {
         FElements.clear();
-        Integer lCount = 300;
+        Integer lCount = 40;
         Integer lRandom;
         Random lGenerator = new Random();
         for(int i=0; i < lCount; i++) {
-            lRandom = lGenerator.nextInt(10);
+            lRandom = lGenerator.nextInt(500);
             //lRandom = Math.abs(FGenerator.nextInt() % 10);
             FElements.add(lRandom);
         }
@@ -59,6 +64,7 @@ public class BubbleSortManager {
             Parent lRoot = lXMLLoader.getRoot();
             FStage.setTitle("Classify-Bubblesort");
             FStage.setScene(new Scene(lRoot, 800, 800, Color.DARKGRAY));
+            FStage.setResizable(false);
         }
         catch( Exception e)
         {
