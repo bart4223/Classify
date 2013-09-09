@@ -48,7 +48,7 @@ public class BubbleSortManager {
         Integer lRandom;
         Random lGenerator = new Random();
         for(int i=0; i < lCount; i++) {
-            lRandom = lGenerator.nextInt(500);
+            lRandom = lGenerator.nextInt(400);
             //lRandom = Math.abs(FGenerator.nextInt() % 10);
             FElements.add(lRandom);
         }
@@ -63,7 +63,7 @@ public class BubbleSortManager {
             FStageController.BubbleSortManager = this;
             Parent lRoot = lXMLLoader.getRoot();
             FStage.setTitle("Classify-Bubblesort");
-            FStage.setScene(new Scene(lRoot, 800, 800, Color.DARKGRAY));
+            FStage.setScene(new Scene(lRoot, 500, 500, Color.DARKGRAY));
             FStage.setResizable(false);
         }
         catch( Exception e)

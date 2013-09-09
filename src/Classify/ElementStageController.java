@@ -36,7 +36,7 @@ public class ElementStageController implements Initializable {
         gc.closePath();
     }
 
-    protected void PaintElements() {
+    protected void PaintElementsWithLine() {
         if (FElements != null && FElements.size()>0) {
             Integer i = 0;
             Iterator<Integer> iterator = FElements.iterator();
@@ -53,6 +53,23 @@ public class ElementStageController implements Initializable {
         }
     }
 
+    protected void PaintElementsWithRect() {
+        if (FElements != null && FElements.size()>0) {
+            Integer x;
+            Integer i = 0;
+            Iterator<Integer> iterator = FElements.iterator();
+            gc.setFill(Color.DARKGREEN);
+            while (iterator.hasNext()) {
+                x = iterator.next();
+                gc.fillRect(10+i+FElementLineWidth,Canvas.getHeight()-10-FElementLineWidth-x,FElementLineWidth,x);
+                gc.setStroke(Color.BLACK);
+                gc.setLineWidth(1);
+                gc.strokeRect(10+i+FElementLineWidth,Canvas.getHeight()-10-FElementLineWidth-x,FElementLineWidth,x);
+                i = i + FElementLineWidth;
+            }
+        }
+    }
+
     public BubbleSortManager BubbleSortManager;
 
     public ElementStageController() {
@@ -65,7 +82,7 @@ public class ElementStageController implements Initializable {
 
     public void RenderScene() {
         ClearCanvas();
-        PaintElements();
+        PaintElementsWithRect();
     }
 
     @Override

@@ -13,8 +13,10 @@ import java.util.TimerTask;
 public class Main extends Application {
 
     TimerTask FTimerTask = new TimerTask() {
-        public synchronized void run() {
-            Sort();
+        public void run() {
+            synchronized (this) {
+                Sort();
+            }
         }
     };
 
@@ -35,7 +37,7 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
         FBubbleSortManager = new BubbleSortManager(this);
-        FTimer = new Timer();
+        FTimer = new Timer(true);
     }
 
     @Override
@@ -55,7 +57,7 @@ public class Main extends Application {
         if (!FTimerRunning) {
             FTimerRunning = !FTimerRunning;
             FBubbleSortManager.InitElements();
-            FTimer.schedule(FTimerTask,1000,100);
+            FTimer.schedule(FTimerTask,1000,50);
         }
     }
 
@@ -64,7 +66,7 @@ public class Main extends Application {
         FTimerRunning = false;
     }
 
-    public synchronized void Sort() {
+    public void Sort() {
         FBubbleSortManager.SortElements();
     }
 
