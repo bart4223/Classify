@@ -70,8 +70,6 @@ public class ElementStageController implements Initializable {
         }
     }
 
-    public BubbleSortManager BubbleSortManager;
-
     public ElementStageController() {
         FElementLineWidth = 10;
     }

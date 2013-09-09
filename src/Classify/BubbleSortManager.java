@@ -60,7 +60,6 @@ public class BubbleSortManager {
         try {
             lXMLLoader.load();
             FStageController = (ElementStageController)lXMLLoader.getController();
-            FStageController.BubbleSortManager = this;
             Parent lRoot = lXMLLoader.getRoot();
             FStage.setTitle("Classify-Bubblesort");
             FStage.setScene(new Scene(lRoot, 500, 500, Color.DARKGRAY));
