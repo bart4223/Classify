@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 import java.net.URL;
 import javafx.scene.paint.Color;
 
-public class BubbleSortStageController implements Initializable {
+public class ElementStageController implements Initializable {
 
     @FXML
     private Canvas Canvas;
@@ -27,8 +27,8 @@ public class BubbleSortStageController implements Initializable {
 
     protected void PaintAxis() {
         gc.beginPath();
-        gc.moveTo(10,10);
-        gc.lineTo(10,Canvas.getHeight()-10);
+        gc.moveTo(10, 10);
+        gc.lineTo(10, Canvas.getHeight() - 10);
         gc.lineTo(Canvas.getHeight()-10,Canvas.getWidth()-10);
         gc.setStroke(Color.DARKRED);
         gc.setLineWidth(2);
@@ -55,7 +55,7 @@ public class BubbleSortStageController implements Initializable {
 
     public BubbleSortManager BubbleSortManager;
 
-    public BubbleSortStageController() {
+    public ElementStageController() {
         FElementLineWidth = 10;
     }
 

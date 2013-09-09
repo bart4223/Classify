@@ -13,7 +13,7 @@ public class BubbleSortManager {
 
     protected Main FApplication;
     protected Stage FStage;
-    protected BubbleSortStageController FStageController;
+    protected ElementStageController FStageController;
     protected ArrayList<Integer> FElements;
     protected BubbleSortAlgorithm FAlgorithm;
 
@@ -56,10 +56,10 @@ public class BubbleSortManager {
 
     protected void CreateStage(){
         FStage = new Stage();
-        FXMLLoader lXMLLoader = new FXMLLoader(getClass().getResource("BubbleSortStage.fxml"));
+        FXMLLoader lXMLLoader = new FXMLLoader(getClass().getResource("ElementStage.fxml"));
         try {
             lXMLLoader.load();
-            FStageController = (BubbleSortStageController)lXMLLoader.getController();
+            FStageController = (ElementStageController)lXMLLoader.getController();
             FStageController.BubbleSortManager = this;
             Parent lRoot = lXMLLoader.getRoot();
             FStage.setTitle("Classify-Bubblesort");
