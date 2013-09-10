@@ -1,6 +1,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane id="AnchorPane" xmlns:fx="http://javafx.com/fxml" fx:controller="Classify.ElementStageController">
+<AnchorPane id="AnchorPane" xmlns:fx="http://javafx.com/fxml" fx:controller="Classify.ElementChartStageController">
     <Canvas id="Canvas" layoutX="0" layoutY="0" height="500" width="500" fx:id="Canvas" />
 </AnchorPane>

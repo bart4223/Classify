@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 import java.net.URL;
 import javafx.scene.paint.Color;
 
-public class ElementStageController implements Initializable {
+public class ElementChartStageController implements Initializable {
 
     @FXML
     private Canvas Canvas;
@@ -64,13 +64,13 @@ public class ElementStageController implements Initializable {
                 gc.fillRect(10+i+FElementLineWidth,Canvas.getHeight()-10-FElementLineWidth-x,FElementLineWidth,x);
                 gc.setStroke(Color.BLACK);
                 gc.setLineWidth(1);
-                gc.strokeRect(10+i+FElementLineWidth,Canvas.getHeight()-10-FElementLineWidth-x,FElementLineWidth,x);
+                gc.strokeRect(10 + i + FElementLineWidth, Canvas.getHeight() - 10 - FElementLineWidth - x, FElementLineWidth, x);
                 i = i + FElementLineWidth;
             }
         }
     }
 
-    public ElementStageController() {
+    public ElementChartStageController() {
         FElementLineWidth = 10;
     }
 
