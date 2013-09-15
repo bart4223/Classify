@@ -7,15 +7,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Main extends Application {
 
     protected MainStageController FMainStageController;
-    protected BubbleSortManager FBubbleSortManager;
-    protected Boolean FTimerRunning = false;
-    protected Timer FTimer;
+    protected ClassifyManager FClassifyManager;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -28,53 +24,28 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(lMainRoot, 500, 500, Color.DARKGRAY));
         primaryStage.setResizable(false);
         primaryStage.show();
-        FBubbleSortManager = new BubbleSortManager(this);
-
+        FClassifyManager = new ClassifyManager();
+        for (int i=0; i<5; i=i+1) {
+            ClassifyItem aClassifyItem = new ClassifyItem("Classify.BubbleSortAlgorithm");
+            FClassifyManager.RegisterClassifyItem(aClassifyItem);
+        }
     }
 
     @Override
     public void stop() throws Exception {
-        if (FTimer != null) {
-            FBubbleSortManager.Terminate();
-            FTimer.cancel();
-        }
+        FClassifyManager.Terminate();
     }
 
     public static void main(String[] args) {
         launch(args);
     }
 
-    public void ShowBubbleSortStage(){
-        FBubbleSortManager.ShowStage();
-    }
-
-    public void Stop() {
-        FBubbleSortManager.ToggleInterrupted();
+    public void ShowStages(){
+        FClassifyManager.ShowStages();
     }
 
     public void Run(){
-
-        TimerTask lTimerTask = new TimerTask() {
-            public void run() {
-                synchronized (this) {
-                    FBubbleSortManager.InitElements();
-                    FBubbleSortManager.SortElements();
-                    FTimerRunning = false;
-                    if (FTimer != null) {
-                        FTimer.cancel();
-                    }
-                }
-            }
-        };
-
-        if (!FTimerRunning) {
-            FTimerRunning = !FTimerRunning;
-            FTimer = new Timer();
-            FTimer.schedule(lTimerTask,500);
-        }
-        else
-            Stop();
-
+        FClassifyManager.Run();
     }
 
 }

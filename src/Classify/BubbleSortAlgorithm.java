@@ -19,4 +19,9 @@ public class BubbleSortAlgorithm extends SortAlgorithm{
         FElements.set(aI, FElements.get(aJ));
         FElements.set(aJ, x);
     }
+
+    public BubbleSortAlgorithm() {
+        FDescription = "Bubblesort-Algorithm";
+    }
+
 }

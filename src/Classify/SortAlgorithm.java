@@ -7,6 +7,7 @@ import static java.lang.Thread.sleep;
 
 public class SortAlgorithm {
 
+    protected String FDescription;
     protected Boolean FInProgress;
     protected Boolean FInterrupted;
     protected Boolean FTerminated;
@@ -35,7 +36,6 @@ public class SortAlgorithm {
             }
         }
         Thread.sleep(50);
-//        System.out.println("Hallo");
         if (FTerminated) {
             throw new Exception();
         }
@@ -56,6 +56,11 @@ public class SortAlgorithm {
         FInProgress = false;
         FInterrupted = false;
         FTerminated = false;
+        FDescription = "";
+    }
+
+    public String GetDescription() {
+        return(FDescription);
     }
 
     public void SetElements(ArrayList<Integer> aValue) {

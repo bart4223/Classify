@@ -9,7 +9,7 @@ public class MainStageController {
 
     @FXML
     private void handleShowBSAction(ActionEvent event) {
-       Application.ShowBubbleSortStage();
+       Application.ShowStages();
     }
 
     @FXML
@@ -19,7 +19,7 @@ public class MainStageController {
 
     @FXML
     private void handleCancelAction(ActionEvent event) {
-        Application.Stop();
+        //Application.Stop();
     }
 
 }
