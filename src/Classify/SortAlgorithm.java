@@ -12,7 +12,7 @@ public class SortAlgorithm {
     protected Boolean FInterrupted;
     protected Boolean FTerminated;
     protected ArrayList<Integer> FElements;
-    protected List FEventlisteners;
+    protected List FEventListeners;
 
     protected void DoExecute() throws Exception{
         OneStepSorted();
@@ -21,7 +21,7 @@ public class SortAlgorithm {
     protected synchronized void RaiseOneStepSortedEvent() {
         SortAlgorithmEvent lEvent = new SortAlgorithmEvent(this);
         lEvent.Elements = FElements;
-        Iterator lItr = FEventlisteners.iterator();
+        Iterator lItr = FEventListeners.iterator();
         while(lItr.hasNext())  {
             ((SortAlgorithmEventListener)lItr.next()).handleOneStepSorted(lEvent);
         }
@@ -52,7 +52,7 @@ public class SortAlgorithm {
     }
 
     public SortAlgorithm() {
-        FEventlisteners= new ArrayList();
+        FEventListeners= new ArrayList();
         FInProgress = false;
         FInterrupted = false;
         FTerminated = false;
@@ -80,10 +80,10 @@ public class SortAlgorithm {
     }
 
     public synchronized void addEventListener(SortAlgorithmEventListener aListener)  {
-        FEventlisteners.add(aListener);
+        FEventListeners.add(aListener);
     }
     public synchronized void removeEventListener(SortAlgorithmEventListener aListener)   {
-        FEventlisteners.remove(aListener);
+        FEventListeners.remove(aListener);
     }
 
     public void Execute() {

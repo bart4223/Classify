@@ -8,20 +8,20 @@ public class BubbleSortAlgorithm extends SortAlgorithm{
             for (int i=0; i<n-1; i=i+1){
                 if (FElements.get(i) > FElements.get(i+1)) {
                     Swap(i,i+1);
-                    OneStepSorted();
                 }
             }
         }
     }
 
-    protected void Swap(Integer aI, Integer aJ) {
+    protected void Swap(Integer aI, Integer aJ) throws Exception{
         int x = FElements.get(aI);
         FElements.set(aI, FElements.get(aJ));
         FElements.set(aJ, x);
+        OneStepSorted();
     }
 
     public BubbleSortAlgorithm() {
-        FDescription = "Bubblesort-Algorithm";
+        FDescription = "BubbleSort-Algorithm";
     }
 
 }

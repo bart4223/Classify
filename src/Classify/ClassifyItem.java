@@ -70,8 +70,6 @@ public class ClassifyItem implements SortAlgorithmEventListener{
     }
 
     public void ShowStage(){
-        if (FStage == null)
-            CreateStage();
         FStage.show();
     }
 
@@ -81,10 +79,13 @@ public class ClassifyItem implements SortAlgorithmEventListener{
 
     public void Terminate() {
         FAlgorithm.Terminate();
-        FTimer.cancel();
+        if (FTimer != null) {
+            FTimer.cancel();
+        }
     }
 
     public void InitElements() {
+        Terminate();
         DemoFillElementsRandom();
         FAlgorithm.SetElements(FElements);
         FStageController.SetElements(FElements);
@@ -96,7 +97,6 @@ public class ClassifyItem implements SortAlgorithmEventListener{
         TimerTask lTimerTask = new TimerTask() {
             public void run() {
                 synchronized (this) {
-                    InitElements();
                     FAlgorithm.Execute();
                     FTimerRunning = false;
                     if (FTimer != null) {
