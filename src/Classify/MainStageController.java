@@ -19,7 +19,7 @@ public class MainStageController {
 
     @FXML
     private void handleCancelAction(ActionEvent event) {
-        Application.Cancel();
+        Application.Stop();
     }
 
 }

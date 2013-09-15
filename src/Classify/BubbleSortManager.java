@@ -7,20 +7,22 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.EventObject;
 import java.util.Random;
 
-public class BubbleSortManager {
+public class BubbleSortManager implements SortAlgorithmEventListener{
 
     protected Main FApplication;
     protected Stage FStage;
     protected ElementChartStageController FStageController;
     protected ArrayList<Integer> FElements;
-    protected BubbleSortAlgorithm FAlgorithm;
+    protected SortAlgorithm FAlgorithm;
 
     public BubbleSortManager(Main aApplication) {
         FApplication = aApplication;
         FElements = new ArrayList<Integer>();
         FAlgorithm = new BubbleSortAlgorithm();
+        FAlgorithm.addEventListener(this);
     }
 
     public void ShowStage(){
@@ -30,21 +32,27 @@ public class BubbleSortManager {
     }
 
     public void SortElements(){
-        FAlgorithm.Sort(FElements);
-        if (FStageController != null) {
-            FStageController.SetElements(FElements);
-            FStageController.RenderScene();
-        }
+        FAlgorithm.Execute();
+    }
+
+    public void ToggleInterrupted() {
+        FAlgorithm.SetInterrupted(!FAlgorithm.GetInterrupted());
+    }
+
+    public void Terminate() {
+        FAlgorithm.Terminate();
     }
 
     public  void InitElements() {
         DemoInitElements();
-        FAlgorithm.Init(FElements,true);
+        FAlgorithm.SetElements(FElements);
+        FStageController.SetElements(FElements);
+        FStageController.RenderScene();
     }
 
     public void DemoInitElements() {
         FElements.clear();
-        Integer lCount = 40;
+        Integer lCount = 30;
         Integer lRandom;
         Random lGenerator = new Random();
         for(int i=0; i < lCount; i++) {
@@ -68,5 +76,12 @@ public class BubbleSortManager {
         catch( Exception e)
         {
         }
+    }
+
+    @Override
+    public void handleOneStepSorted(EventObject e) {
+        SortAlgorithmEvent lEvent = (SortAlgorithmEvent)e;
+        FStageController.SetElements(lEvent.Elements);
+        FStageController.RenderScene();
     }
 }

@@ -12,18 +12,10 @@ import java.util.TimerTask;
 
 public class Main extends Application {
 
-    TimerTask FTimerTask = new TimerTask() {
-        public void run() {
-            synchronized (this) {
-                Sort();
-            }
-        }
-    };
-
     protected MainStageController FMainStageController;
     protected BubbleSortManager FBubbleSortManager;
-    protected Timer FTimer;
     protected Boolean FTimerRunning = false;
+    protected Timer FTimer;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -37,12 +29,15 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
         FBubbleSortManager = new BubbleSortManager(this);
-        FTimer = new Timer(true);
+
     }
 
     @Override
     public void stop() throws Exception {
-        Cancel();
+        if (FTimer != null) {
+            FBubbleSortManager.Terminate();
+            FTimer.cancel();
+        }
     }
 
     public static void main(String[] args) {
@@ -53,21 +48,33 @@ public class Main extends Application {
         FBubbleSortManager.ShowStage();
     }
 
+    public void Stop() {
+        FBubbleSortManager.ToggleInterrupted();
+    }
+
     public void Run(){
+
+        TimerTask lTimerTask = new TimerTask() {
+            public void run() {
+                synchronized (this) {
+                    FBubbleSortManager.InitElements();
+                    FBubbleSortManager.SortElements();
+                    FTimerRunning = false;
+                    if (FTimer != null) {
+                        FTimer.cancel();
+                    }
+                }
+            }
+        };
+
         if (!FTimerRunning) {
             FTimerRunning = !FTimerRunning;
-            FBubbleSortManager.InitElements();
-            FTimer.schedule(FTimerTask,1000,50);
+            FTimer = new Timer();
+            FTimer.schedule(lTimerTask,500);
         }
-    }
+        else
+            Stop();
 
-    public void Cancel(){
-        FTimer.cancel();
-        FTimerRunning = false;
-    }
-
-    public void Sort() {
-        FBubbleSortManager.SortElements();
     }
 
 }
