@@ -18,11 +18,7 @@ public class Main extends Application {
             FClassifyManager.RegisterClassifyItem(lClassifyItem);
         }
         for (int i=0; i<1; i=i+1) {
-            lClassifyItem = new ClassifyItem("Classify.BubbleSortStepIIAlgorithm",ElementGenerator.Scenarios.Scenario3);
-            FClassifyManager.RegisterClassifyItem(lClassifyItem);
-        }
-        for (int i=0; i<1; i=i+1) {
-            lClassifyItem = new ClassifyItem("Classify.BubbleSortStepIIIAlgorithm",ElementGenerator.Scenarios.Scenario3);
+            lClassifyItem = new ClassifyItem("Classify.MergeSortAlgorithm",ElementGenerator.Scenarios.Scenario3);
             FClassifyManager.RegisterClassifyItem(lClassifyItem);
         }
         FClassifyManager.ShowController();
