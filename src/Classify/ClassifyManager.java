@@ -68,6 +68,11 @@ public class ClassifyManager {
         }
     }
 
+    public void Clear() {
+        Terminate();
+        FItems.clear();
+    }
+
     public void Run() {
         Iterator lItr = FItems.iterator();
         while(lItr.hasNext())  {

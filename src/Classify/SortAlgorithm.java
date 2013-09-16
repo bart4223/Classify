@@ -52,7 +52,7 @@ public class SortAlgorithm {
         FTerminated = false;
         FSortSteps = 0;
         FStartTime = System.currentTimeMillis();
-        WriteConsole("Start Sort of "+Integer.toString(GetElementSize())+" Elements");
+        WriteLog("Start Sort of "+Integer.toString(GetElementSize())+" Elements");
     }
 
     protected Integer IncreaseSortSteps() {
@@ -69,14 +69,15 @@ public class SortAlgorithm {
 
     protected void AfterExecute() {
         FEndTime = System.currentTimeMillis();
-        WriteConsole("Time used "+((FEndTime-FStartTime)/1000)+" sec");
-        WriteConsole("Sort in "+Integer.toString(FSortSteps)+" Steps");
-        WriteConsole("End Sort of "+Integer.toString(GetElementSize())+" Elements");
+        WriteLog("Time used "+((FEndTime-FStartTime)/1000)+" sec");
+        WriteLog("Sort in "+Integer.toString(FSortSteps)+" Steps");
+        WriteLog("End Sort of "+Integer.toString(GetElementSize())+" Elements");
         FInProgress = false;
     }
 
-    protected void WriteConsole(String aText) {
-        System.out.println(getCurrentTimeAsString()+"  "+FDescription+"  "+aText);
+    protected void WriteLog(String aText) {
+        String lText = getCurrentTimeAsString()+"  "+FDescription+"  "+aText;
+        System.out.println(lText);
     }
 
     protected String getCurrentTimeAsString()

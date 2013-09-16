@@ -47,8 +47,6 @@ public class ClassifyItem implements SortAlgorithmEventListener{
         }
     }
 
-
-
     public ClassifyItem(String aAlgorithmClassName, ElementGenerator.Scenarios aScenario) {
         FElements = new ArrayList<Integer>();
         FAlgorithmClassName = aAlgorithmClassName;
@@ -117,4 +115,5 @@ public class ClassifyItem implements SortAlgorithmEventListener{
         FStageController.SetElements(lEvent.Elements);
         FStageController.RenderScene();
     }
+
 }
