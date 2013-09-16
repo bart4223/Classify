@@ -17,7 +17,7 @@ public class ClassifyItem implements SortAlgorithmEventListener{
     protected String FAlgorithmClassName;
     protected Boolean FTimerRunning;
     protected Timer FTimer;
-    protected ElementGenerator FElementGenerator;
+    protected ElementGenerator ElementGenerator;
     protected ElementGenerator.Scenarios FScenario;
 
     protected void CreateStage(){
@@ -47,23 +47,12 @@ public class ClassifyItem implements SortAlgorithmEventListener{
         }
     }
 
-    protected void InitElements() {
-        switch(FScenario){
-            case Scenario1:
-                FElementGenerator.FillRandom(FElements);
-                break;
-            case Scenario2:
-                FElementGenerator.FillDescending(FElements);
-                break;
-        }
-    }
+
 
     public ClassifyItem(String aAlgorithmClassName, ElementGenerator.Scenarios aScenario) {
         FElements = new ArrayList<Integer>();
         FAlgorithmClassName = aAlgorithmClassName;
         FTimerRunning = false;
-        FElementGenerator = new ElementGenerator();
-        FElementGenerator.Count = 30;
         FScenario = aScenario;
     }
 
@@ -89,7 +78,7 @@ public class ClassifyItem implements SortAlgorithmEventListener{
 
     public void InitRun() {
         Terminate();
-        InitElements();
+        ElementGenerator.Fill(FScenario, FElements);
         FAlgorithm.SetElements(FElements);
         FStageController.SetElements(FElements);
         FStageController.RenderScene();

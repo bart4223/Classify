@@ -14,6 +14,7 @@ public class ClassifyManager {
     protected Stage FStage;
     protected ClassifyControllerStageController FStageController;
     protected ArrayList<ClassifyItem> FItems;
+    protected ElementGenerator FElementGenerator;
 
     protected void CreateStage(){
         FStage = new Stage();
@@ -34,6 +35,8 @@ public class ClassifyManager {
 
     public ClassifyManager() {
         FItems = new ArrayList<ClassifyItem>();
+        FElementGenerator = new ElementGenerator();
+        FElementGenerator.Count = 30;
     }
 
     public void Initialize() {
@@ -66,6 +69,7 @@ public class ClassifyManager {
     }
 
     public void InitRun() {
+        FElementGenerator.Initialize();
         Iterator lItr = FItems.iterator();
         while(lItr.hasNext())  {
             ((ClassifyItem)lItr.next()).InitRun();
@@ -73,6 +77,7 @@ public class ClassifyManager {
     }
 
     public void RegisterClassifyItem(ClassifyItem aClassifyItem) {
+        aClassifyItem.ElementGenerator = FElementGenerator;
         aClassifyItem.Initialize();
         FItems.add(aClassifyItem);
     }
