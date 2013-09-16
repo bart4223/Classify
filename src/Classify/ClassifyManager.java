@@ -36,7 +36,7 @@ public class ClassifyManager {
     public ClassifyManager() {
         FItems = new ArrayList<ClassifyItem>();
         FElementGenerator = new ElementGenerator();
-        FElementGenerator.Count = 30;
+        FElementGenerator.Count = 40;
     }
 
     public void Initialize() {
