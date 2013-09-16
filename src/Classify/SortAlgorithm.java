@@ -1,8 +1,9 @@
 package Classify;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 import static java.lang.Thread.sleep;
 
 public class SortAlgorithm {
@@ -13,6 +14,9 @@ public class SortAlgorithm {
     protected Boolean FTerminated;
     protected ArrayList<Integer> FElements;
     protected List FEventListeners;
+    protected Integer FSortSteps;
+    protected long FStartTime;
+    protected long FEndTime;
 
     protected void DoExecute() throws Exception{
         OneStepSorted();
@@ -28,6 +32,7 @@ public class SortAlgorithm {
     }
 
     protected void OneStepSorted() throws Exception{
+        IncreaseSortSteps();
         RaiseOneStepSortedEvent();
         while (FInterrupted) {
             try {
@@ -45,10 +50,40 @@ public class SortAlgorithm {
         FInProgress = true;
         FInterrupted = false;
         FTerminated = false;
+        FSortSteps = 0;
+        FStartTime = System.currentTimeMillis();
+        WriteConsole("Start Sort of "+Integer.toString(GetElementSize())+" Elements");
+    }
+
+    protected Integer IncreaseSortSteps() {
+        FSortSteps = FSortSteps + 1;
+        return FSortSteps;
+    }
+
+    protected Integer GetElementSize() {
+        if (FElements != null)
+            return FElements.size();
+        else
+            return 0;
     }
 
     protected void AfterExecute() {
+        FEndTime = System.currentTimeMillis();
+        WriteConsole("Time used "+((FEndTime-FStartTime)/1000)+" sec");
+        WriteConsole("Sort in "+Integer.toString(FSortSteps)+" Steps");
+        WriteConsole("End Sort of "+Integer.toString(GetElementSize())+" Elements");
         FInProgress = false;
+    }
+
+    protected void WriteConsole(String aText) {
+        System.out.println(getCurrentTimeAsString()+"  "+FDescription+"  "+aText);
+    }
+
+    protected String getCurrentTimeAsString()
+    {
+        DateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+        formatter.setTimeZone(TimeZone.getTimeZone("GMT+2:00"));
+        return formatter.format(new Date());
     }
 
     public SortAlgorithm() {
@@ -57,6 +92,9 @@ public class SortAlgorithm {
         FInterrupted = false;
         FTerminated = false;
         FDescription = "";
+        FSortSteps = 0;
+        FStartTime = 0;
+        FEndTime = 0;
     }
 
     public String GetDescription() {

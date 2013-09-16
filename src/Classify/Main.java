@@ -14,11 +14,11 @@ public class Main extends Application {
         FClassifyManager.Initialize();
         ClassifyItem lClassifyItem;
         for (int i=0; i<1; i=i+1) {
-            lClassifyItem = new ClassifyItem("Classify.BubbleSortAlgorithm",ElementGenerator.Scenarios.Scenario3);
+            lClassifyItem = new ClassifyItem("Classify.BubbleSortAlgorithm",ElementGenerator.Scenarios.Scenario2);
             FClassifyManager.RegisterClassifyItem(lClassifyItem);
         }
         for (int i=0; i<1; i=i+1) {
-            lClassifyItem = new ClassifyItem("Classify.MergeSortAlgorithm",ElementGenerator.Scenarios.Scenario3);
+            lClassifyItem = new ClassifyItem("Classify.MergeSortAlgorithm",ElementGenerator.Scenarios.Scenario2);
             FClassifyManager.RegisterClassifyItem(lClassifyItem);
         }
         FClassifyManager.ShowController();

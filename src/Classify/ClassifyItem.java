@@ -65,6 +65,10 @@ public class ClassifyItem implements SortAlgorithmEventListener{
         FStage.show();
     }
 
+    public void CloseStage(){
+        FStage.close();
+    }
+
     public void ToggleInterrupted() {
         FAlgorithm.SetInterrupted(!FAlgorithm.GetInterrupted());
     }

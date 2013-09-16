@@ -7,6 +7,7 @@
 <HBox id="ControlPane" prefHeight="60" alignment="TOP_LEFT" spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="Classify.ClassifyControllerStageController">
     <padding><Insets top="15" right="10" bottom="15" left="10"/></padding>
     <Button id="btnShow" prefWidth="100" text="Show" onAction="#handleShowAction" fx:id="btnShow" />
+    <Button id="btnClose" prefWidth="100" text="Close" onAction="#handleCloseAction" fx:id="btnClose" />
     <Button id="btnInit" prefWidth="100" text="Init" onAction="#handleInitAction" fx:id="btnInit" />
-    <Button id="btnRun" prefWidth="100" layoutY="10" text="Run/Stop" onAction="#handleRunAction" fx:id="btnRun" />
+    <Button id="btnRun" prefWidth="100" text="Run/Stop" onAction="#handleRunAction" fx:id="btnRun" />
 </HBox>

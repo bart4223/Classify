@@ -14,6 +14,11 @@ public class ClassifyControllerStageController {
     }
 
     @FXML
+    private void handleCloseAction(ActionEvent event) {
+        Manager.CloseStages();
+    }
+
+    @FXML
     private void handleRunAction(ActionEvent event) {
         Manager.Run();
     }
