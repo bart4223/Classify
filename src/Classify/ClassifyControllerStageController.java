@@ -20,7 +20,7 @@ public class ClassifyControllerStageController {
 
     @FXML
     private void handleInitAction(ActionEvent event) {
-        Manager.InitElements();
+        Manager.InitRun();
     }
 
 }

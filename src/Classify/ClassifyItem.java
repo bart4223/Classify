@@ -15,9 +15,10 @@ public class ClassifyItem implements SortAlgorithmEventListener{
     protected ArrayList<Integer> FElements;
     protected SortAlgorithm FAlgorithm;
     protected String FAlgorithmClassName;
-    protected Random FGenerator;
     protected Boolean FTimerRunning;
     protected Timer FTimer;
+    protected ElementGenerator FElementGenerator;
+    protected ElementGenerator.Scenarios FScenario;
 
     protected void CreateStage(){
         FStage = new Stage();
@@ -27,7 +28,7 @@ public class ClassifyItem implements SortAlgorithmEventListener{
             FStageController = (ElementChartStageController)lXMLLoader.getController();
             Parent lRoot = lXMLLoader.getRoot();
             FStage.setTitle(FAlgorithm.GetDescription());
-            FStage.setScene(new Scene(lRoot, 500, 500, Color.DARKGRAY));
+            FStage.setScene(new Scene(lRoot, 500, 500, Color.LIGHTGRAY));
             FStage.setResizable(false);
         }
         catch( Exception e) {
@@ -46,22 +47,24 @@ public class ClassifyItem implements SortAlgorithmEventListener{
         }
     }
 
-    protected void DemoFillElementsRandom() {
-        FElements.clear();
-        Integer lCount = 30;
-        Integer lRandom;
-        for(int i=0; i < lCount; i++) {
-            lRandom = FGenerator.nextInt(400);
-            //lRandom = Math.abs(FGenerator.nextInt() % 10);
-            FElements.add(lRandom);
+    protected void InitElements() {
+        switch(FScenario){
+            case Scenario1:
+                FElementGenerator.FillRandom(FElements);
+                break;
+            case Scenario2:
+                FElementGenerator.FillDescending(FElements);
+                break;
         }
     }
 
-    public ClassifyItem(String aAlgorithmClassName) {
+    public ClassifyItem(String aAlgorithmClassName, ElementGenerator.Scenarios aScenario) {
         FElements = new ArrayList<Integer>();
         FAlgorithmClassName = aAlgorithmClassName;
-        FGenerator = new Random();
         FTimerRunning = false;
+        FElementGenerator = new ElementGenerator();
+        FElementGenerator.Count = 30;
+        FScenario = aScenario;
     }
 
     public void Initialize() {
@@ -84,9 +87,9 @@ public class ClassifyItem implements SortAlgorithmEventListener{
         }
     }
 
-    public void InitElements() {
+    public void InitRun() {
         Terminate();
-        DemoFillElementsRandom();
+        InitElements();
         FAlgorithm.SetElements(FElements);
         FStageController.SetElements(FElements);
         FStageController.RenderScene();

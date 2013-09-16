@@ -21,8 +21,7 @@ public class ElementChartStageController implements Initializable {
 
     protected void ClearCanvas() {
         gc.setFill(Color.LIGHTGRAY);
-        gc.fillRect(0, 0, Canvas.getWidth(), Canvas.getHeight());
-        PaintAxis();
+        gc.fillRect(12, 0, Canvas.getWidth()-12, Canvas.getHeight()-12);
     }
 
     protected void PaintAxis() {
@@ -86,7 +85,7 @@ public class ElementChartStageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         gc = Canvas.getGraphicsContext2D();
-        RenderScene();
+        PaintAxis();
     }
 
 }

@@ -65,10 +65,10 @@ public class ClassifyManager {
         }
     }
 
-    public void InitElements() {
+    public void InitRun() {
         Iterator lItr = FItems.iterator();
         while(lItr.hasNext())  {
-            ((ClassifyItem)lItr.next()).InitElements();
+            ((ClassifyItem)lItr.next()).InitRun();
         }
     }
 

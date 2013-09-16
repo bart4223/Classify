@@ -12,9 +12,14 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         FClassifyManager = new ClassifyManager();
         FClassifyManager.Initialize();
-        for (int i=0; i<5; i=i+1) {
-            ClassifyItem aClassifyItem = new ClassifyItem("Classify.BubbleSortAlgorithm");
-            FClassifyManager.RegisterClassifyItem(aClassifyItem);
+        ClassifyItem lClassifyItem;
+        for (int i=0; i<2; i=i+1) {
+            lClassifyItem = new ClassifyItem("Classify.BubbleSortAlgorithm",ElementGenerator.Scenarios.Scenario1);
+            FClassifyManager.RegisterClassifyItem(lClassifyItem);
+        }
+        for (int i=0; i<2; i=i+1) {
+            lClassifyItem = new ClassifyItem("Classify.BubbleSortAlgorithm",ElementGenerator.Scenarios.Scenario2);
+            FClassifyManager.RegisterClassifyItem(lClassifyItem);
         }
         FClassifyManager.ShowController();
     }
