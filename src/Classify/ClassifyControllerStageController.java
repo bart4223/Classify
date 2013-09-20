@@ -28,4 +28,9 @@ public class ClassifyControllerStageController {
         Manager.InitRun();
     }
 
+    @FXML
+    private void handleClearLogAction(ActionEvent event) {
+        Manager.ClearLog();
+    }
+
 }

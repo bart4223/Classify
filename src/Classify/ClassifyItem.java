@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 import java.util.*;
 
-public class ClassifyItem implements SortAlgorithmEventListener{
+public class ClassifyItem implements ClassifyEventListener {
 
     protected Stage FStage;
     protected ElementChartStageController FStageController;
@@ -28,7 +28,7 @@ public class ClassifyItem implements SortAlgorithmEventListener{
             FStageController = (ElementChartStageController)lXMLLoader.getController();
             Parent lRoot = lXMLLoader.getRoot();
             FStage.setTitle(FAlgorithm.GetDescription());
-            FStage.setScene(new Scene(lRoot, 500, 500, Color.LIGHTGRAY));
+            FStage.setScene(new Scene(lRoot, 500, 574, Color.LIGHTGRAY));
             FStage.setResizable(false);
         }
         catch( Exception e) {
@@ -83,7 +83,7 @@ public class ClassifyItem implements SortAlgorithmEventListener{
         ElementGenerator.Fill(FScenario, FElements);
         FAlgorithm.SetElements(FElements);
         FStageController.SetElements(FElements);
-        FStageController.RenderScene();
+        FStageController.RenderElements();
     }
 
     public void Run(){
@@ -110,10 +110,19 @@ public class ClassifyItem implements SortAlgorithmEventListener{
     }
 
     @Override
-    public void handleOneStepSorted(EventObject e) {
-        SortAlgorithmEvent lEvent = (SortAlgorithmEvent)e;
-        FStageController.SetElements(lEvent.Elements);
-        FStageController.RenderScene();
+    public void handleOneStepSorted(ClassifySortEvent e) {
+        FStageController.SetElements(e.Elements);
+        FStageController.RenderElements();
+    }
+
+    @Override
+    public void handleWriteLog(ClassifyLogEvent e) {
+        FStageController.DisplayLogEntry(e.LogEntry);
+    }
+
+    public void ClearLog() {
+        FAlgorithm.ClearLog();
+        FStageController.ClearLog();
     }
 
 }

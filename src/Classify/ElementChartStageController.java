@@ -8,12 +8,17 @@ import java.util.Iterator;
 import javafx.scene.canvas.GraphicsContext;
 import java.util.ResourceBundle;
 import java.net.URL;
+
+import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 
 public class ElementChartStageController implements Initializable {
 
     @FXML
     private Canvas Canvas;
+
+    @FXML
+    private TextArea TextArea;
 
     protected GraphicsContext gc;
     protected ArrayList<Integer> FElements;
@@ -29,7 +34,7 @@ public class ElementChartStageController implements Initializable {
         gc.moveTo(10, 10);
         gc.lineTo(10, Canvas.getHeight() - 10);
         gc.lineTo(Canvas.getHeight()-10,Canvas.getWidth()-10);
-        gc.setStroke(Color.DARKRED);
+        gc.setStroke(Color.BLACK);
         gc.setLineWidth(2);
         gc.stroke();
         gc.closePath();
@@ -45,7 +50,7 @@ public class ElementChartStageController implements Initializable {
                 gc.lineTo(10+i+FElementLineWidth,Canvas.getHeight()-10-FElementLineWidth-iterator.next());
                 i = i + FElementLineWidth;
             }
-            gc.setStroke(Color.DARKGREEN);
+            gc.setStroke(Color.DARKGRAY);
             gc.setLineWidth(FElementLineWidth);
             gc.stroke();
             gc.closePath();
@@ -57,7 +62,7 @@ public class ElementChartStageController implements Initializable {
             Integer x;
             Integer i = 0;
             Iterator<Integer> iterator = FElements.iterator();
-            gc.setFill(Color.DARKGREEN);
+            gc.setFill(Color.DARKGRAY);
             while (iterator.hasNext()) {
                 x = iterator.next();
                 gc.fillRect(10+i+FElementLineWidth,Canvas.getHeight()-10-FElementLineWidth-x,FElementLineWidth,x);
@@ -77,9 +82,24 @@ public class ElementChartStageController implements Initializable {
         FElements = aElements;
     }
 
-    public void RenderScene() {
+    public synchronized void RenderElements() {
         ClearCanvas();
         PaintElementsWithRect();
+    }
+
+    public void DisplayLogEntry(LogEntry aLogEntry) {
+        String lStr = TextArea.getText();
+        if (lStr.length() == 0) {
+            lStr = aLogEntry.GetDateAsString() + "  " + aLogEntry.GetText();
+        }
+        else {
+            lStr = aLogEntry.GetDateAsString() + "  " + aLogEntry.GetText() + "\n" + lStr;
+        }
+        TextArea.setText(lStr);
+    }
+
+    public void ClearLog() {
+        TextArea.clear();
     }
 
     @Override

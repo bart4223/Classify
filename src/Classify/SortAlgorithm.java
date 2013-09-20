@@ -1,9 +1,6 @@
 package Classify;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
-
 import static java.lang.Thread.sleep;
 
 public class SortAlgorithm {
@@ -17,17 +14,18 @@ public class SortAlgorithm {
     protected Integer FSortSteps;
     protected long FStartTime;
     protected long FEndTime;
+    protected ArrayList<LogEntry> FLogEntries;
 
     protected void DoExecute() throws Exception{
         OneStepSorted();
     }
 
     protected synchronized void RaiseOneStepSortedEvent() {
-        SortAlgorithmEvent lEvent = new SortAlgorithmEvent(this);
+        ClassifySortEvent lEvent = new ClassifySortEvent(this);
         lEvent.Elements = FElements;
         Iterator lItr = FEventListeners.iterator();
         while(lItr.hasNext())  {
-            ((SortAlgorithmEventListener)lItr.next()).handleOneStepSorted(lEvent);
+            ((ClassifyEventListener)lItr.next()).handleOneStepSorted(lEvent);
         }
     }
 
@@ -76,19 +74,24 @@ public class SortAlgorithm {
     }
 
     protected void WriteLog(String aText) {
-        String lText = getCurrentTimeAsString()+"  "+FDescription+"  "+aText;
-        System.out.println(lText);
+        Date lDate = new Date();
+        LogEntry aLogEntry = new LogEntry(lDate, aText);
+        FLogEntries.add(aLogEntry);
+        RaiseLogEntryEvent(aLogEntry);
     }
 
-    protected String getCurrentTimeAsString()
-    {
-        DateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-        formatter.setTimeZone(TimeZone.getTimeZone("GMT+2:00"));
-        return formatter.format(new Date());
+    protected synchronized void RaiseLogEntryEvent(LogEntry aLogEntry) {
+        ClassifyLogEvent lEvent = new ClassifyLogEvent(this);
+        lEvent.LogEntry = aLogEntry;
+        Iterator lItr = FEventListeners.iterator();
+        while(lItr.hasNext())  {
+            ((ClassifyEventListener)lItr.next()).handleWriteLog(lEvent);
+        }
     }
 
     public SortAlgorithm() {
         FEventListeners= new ArrayList();
+        FLogEntries = new ArrayList<LogEntry>();
         FInProgress = false;
         FInterrupted = false;
         FTerminated = false;
@@ -118,10 +121,10 @@ public class SortAlgorithm {
         return(FInterrupted);
     }
 
-    public synchronized void addEventListener(SortAlgorithmEventListener aListener)  {
+    public synchronized void addEventListener(ClassifyEventListener aListener)  {
         FEventListeners.add(aListener);
     }
-    public synchronized void removeEventListener(SortAlgorithmEventListener aListener)   {
+    public synchronized void removeEventListener(ClassifyEventListener aListener)   {
         FEventListeners.remove(aListener);
     }
 
@@ -140,6 +143,10 @@ public class SortAlgorithm {
     public void Terminate() {
         FTerminated = true;
         FInterrupted = false;
+    }
+
+    public void ClearLog() {
+        FLogEntries.clear();
     }
 
 }

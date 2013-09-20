@@ -25,7 +25,7 @@ public class ClassifyManager {
             FStageController.Manager = this;
             Parent lRoot = lXMLLoader.getRoot();
             FStage.setTitle("Classify-Controller");
-            FStage.setScene(new Scene(lRoot, 400, 60, Color.DARKGRAY));
+            FStage.setScene(new Scene(lRoot, 500, 60, Color.DARKGRAY));
             FStage.setResizable(false);
         }
         catch( Exception e) {
@@ -92,6 +92,13 @@ public class ClassifyManager {
         aClassifyItem.ElementGenerator = FElementGenerator;
         aClassifyItem.Initialize();
         FItems.add(aClassifyItem);
+    }
+
+    public void ClearLog() {
+        Iterator lItr = FItems.iterator();
+        while(lItr.hasNext())  {
+            ((ClassifyItem)lItr.next()).ClearLog();
+        }
     }
 
 }

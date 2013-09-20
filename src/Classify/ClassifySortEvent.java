@@ -2,11 +2,11 @@ package Classify;
 
 import java.util.ArrayList;
 
-public class SortAlgorithmEvent extends java.util.EventObject {
+public class ClassifySortEvent extends java.util.EventObject {
 
     public ArrayList<Integer> Elements;
 
-    public SortAlgorithmEvent(Object source) {
+    public ClassifySortEvent(Object source) {
         super(source);
     }
 
