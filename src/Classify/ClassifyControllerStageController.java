@@ -37,6 +37,11 @@ public class ClassifyControllerStageController {
         Manager.ClearLog();
     }
 
+    @FXML
+    private void handleConfigAction(ActionEvent event) {
+        Manager.ShowConfig();
+    }
+
     public void DisplayText(String aText) {
         TextArea.setText(aText);
     }

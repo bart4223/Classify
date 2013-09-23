@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<classifymanager>
+<ClassifyManager>
     <ElementCount>30</ElementCount>
     <ElementMaxValue>400</ElementMaxValue>
     <Items>
@@ -12,4 +12,4 @@
             <Scenario>Scenario3</Scenario>
         </Item>
     </Items>
-</classifymanager>
+</ClassifyManager>
