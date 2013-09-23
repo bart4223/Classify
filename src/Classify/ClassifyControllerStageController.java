@@ -3,10 +3,14 @@ package Classify;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 
 public class ClassifyControllerStageController {
 
     public ClassifyManager Manager;
+
+    @FXML
+    private TextArea TextArea;
 
     @FXML
     private void handleShowAction(ActionEvent event) {
@@ -31,6 +35,10 @@ public class ClassifyControllerStageController {
     @FXML
     private void handleClearLogAction(ActionEvent event) {
         Manager.ClearLog();
+    }
+
+    public void DisplayText(String aText) {
+        TextArea.setText(aText);
     }
 
 }

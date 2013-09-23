@@ -15,6 +15,7 @@ public class ClassifyManager {
     protected ClassifyControllerStageController FStageController;
     protected ArrayList<ClassifyItem> FItems;
     protected ElementGenerator FElementGenerator;
+    protected ClassifyConfigLoader FConfigLoader;
 
     protected void CreateStage(){
         FStage = new Stage();
@@ -25,7 +26,7 @@ public class ClassifyManager {
             FStageController.Manager = this;
             Parent lRoot = lXMLLoader.getRoot();
             FStage.setTitle("Classify-Controller");
-            FStage.setScene(new Scene(lRoot, 500, 60, Color.DARKGRAY));
+            FStage.setScene(new Scene(lRoot, 560, 128, Color.DARKGRAY));
             FStage.setResizable(false);
         }
         catch( Exception e) {
@@ -33,14 +34,20 @@ public class ClassifyManager {
         }
     }
 
+    protected void DisplayMessage(String aText) {
+        FStageController.DisplayText(aText);
+    }
+
     public ClassifyManager() {
         FItems = new ArrayList<ClassifyItem>();
+        FConfigLoader = new ClassifyConfigLoader(this);
         FElementGenerator = new ElementGenerator();
-        FElementGenerator.Count = 40;
+        FElementGenerator.SetCount(42);
     }
 
     public void Initialize() {
         CreateStage();
+        DisplayMessage("Welcome to classify...");
     }
 
     public void ShowController() {
@@ -99,6 +106,14 @@ public class ClassifyManager {
         while(lItr.hasNext())  {
             ((ClassifyItem)lItr.next()).ClearLog();
         }
+    }
+
+    public void SetElementCount(Integer aCount) {
+        FElementGenerator.SetCount(aCount);
+    }
+
+    public void SetMaxElementValue(Integer aMaxValue) {
+        FElementGenerator.SetMaxValue(aMaxValue);
     }
 
 }

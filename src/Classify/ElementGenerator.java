@@ -6,16 +6,17 @@ import java.util.Random;
 public class ElementGenerator {
 
     public enum Scenarios{Scenario1, Scenario2, Scenario3};
-    public Integer Count;
 
+    protected Integer FCount;
+    protected Integer FMaxValue;
     protected ArrayList<Integer> FCommonElements;
     protected Random FGenerator;
 
     protected void FillRandom(ArrayList<Integer> aElements) {
         aElements.clear();
         Integer lRandom;
-        for(int i=0; i < Count; i++) {
-            lRandom = FGenerator.nextInt(400);
+        for(int i=0; i < FCount; i++) {
+            lRandom = FGenerator.nextInt(FMaxValue);
             //lRandom = Math.abs(FGenerator.nextInt() % 10);
             aElements.add(lRandom);
         }
@@ -23,14 +24,14 @@ public class ElementGenerator {
 
     protected void FillDescending(ArrayList<Integer> aElements) {
         aElements.clear();
-        for(int i=0; i < Count; i++) {
-            aElements.add((Count-i)*10);
+        for(int i=0; i < FCount; i++) {
+            aElements.add((FCount-i)*10);
         }
     }
 
     protected void FillCommon(ArrayList<Integer> aElements) {
         aElements.clear();
-        for(int i=0; i < Count; i++) {
+        for(int i=0; i < FCount; i++) {
             aElements.add(FCommonElements.get(i));
         }
     }
@@ -38,7 +39,8 @@ public class ElementGenerator {
     public ElementGenerator() {
         FGenerator = new Random();
         FCommonElements = new ArrayList<Integer>();
-        Count = 0;
+        FCount = 0;
+        FMaxValue = 400;
     }
 
     public void Initialize() {
@@ -57,6 +59,14 @@ public class ElementGenerator {
                 FillCommon(aElements);
                 break;
         }
+    }
+
+    public void SetCount(Integer aCount) {
+        FCount = aCount;
+    }
+
+    public void SetMaxValue(Integer aMaxValue) {
+        FMaxValue = aMaxValue;
     }
 
 }

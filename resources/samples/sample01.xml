@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<classifymanager>
+    <ElementCount>30</ElementCount>
+    <ElementMaxValue>400</ElementMaxValue>
+    <Items>
+        <Item>
+            <SortAlgorithm>BubbleSortAlgorithm</SortAlgorithm>
+            <Scenario>Scenario3</Scenario>
+        </Item>
+        <Item>
+            <SortAlgorithm>MergeSortAlgorithm</SortAlgorithm>
+            <Scenario>Scenario3</Scenario>
+        </Item>
+    </Items>
+</classifymanager>
