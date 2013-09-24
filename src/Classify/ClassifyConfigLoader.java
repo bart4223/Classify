@@ -19,6 +19,7 @@ public class ClassifyConfigLoader {
     protected Stage FStage;
     protected ArrayList<LogEntry> FLogEntries;
     protected ClassifyConfigStageController FStageController;
+    protected Document FDocument;
 
     protected void CreateStage(){
         FStage = new Stage();
@@ -44,6 +45,27 @@ public class ClassifyConfigLoader {
         FStageController.DisplayLogEntry(aLogEntry);
     }
 
+    protected boolean LoadXMLDocument(String aConfigXML) {
+        try {
+            DocumentBuilderFactory lDBFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder lDocBuilder = lDBFactory.newDocumentBuilder();
+            ByteArrayInputStream lInputStream = new ByteArrayInputStream(aConfigXML.getBytes());
+            FDocument = lDocBuilder.parse(lInputStream);
+        } catch (Exception e) {
+            FDocument = null;
+            WriteLog("Failed to load the configuration ("+e.getMessage()+")...");
+        }
+        return FDocument != null;
+    }
+
+    protected Integer GetElementCountFromDocument() {
+        if (FDocument != null) {
+            String lString = FDocument.getDocumentElement().getElementsByTagName("ElementCount").item(0).getTextContent();
+            return Integer.parseInt(lString);
+        }
+        return (0);
+    }
+
     public ClassifyConfigLoader(ClassifyManager aManager) {
         FManager = aManager;
         FLogEntries = new ArrayList<LogEntry>();
@@ -58,14 +80,13 @@ public class ClassifyConfigLoader {
     }
 
     public void SubmitSample(String aNumber) {
-        InputStream in = null;
         try {
-            in = new FileInputStream("resources/samples/sample"+aNumber+".xml");
+            InputStream lFileStream = new FileInputStream("resources/samples/sample"+aNumber+".xml");
             String lString = "";
-            if (in != null) {
-                int content;
-                while ((content = in.read()) != -1) {
-                    lString = lString + (char)content;
+            if (lFileStream != null) {
+                int lContent;
+                while ((lContent = lFileStream.read()) != -1) {
+                    lString = lString + (char)lContent;
                 }
                 FStageController.DisplayConfigXML(lString);
                 WriteLog("Configuration sample"+aNumber+" submitted...");
@@ -75,22 +96,12 @@ public class ClassifyConfigLoader {
         }
     }
 
-    public void LoadConfig(String aConfigXML) {
-        int i;
-        String lString;
-        try {
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            ByteArrayInputStream IN = new ByteArrayInputStream(aConfigXML.getBytes());
-            Document doc = dBuilder.parse(IN);
-            //System.out.println("Root element2: " + doc.getDocumentElement().getNodeName());
-            //System.out.println(doc.getDocumentElement().getElementsByTagName("ElementCount").item(0).getTextContent());
-            lString = doc.getDocumentElement().getElementsByTagName("ElementCount").item(0).getTextContent();
-            i = Integer.parseInt(lString);
-            FManager.SetElementCount(i);
-            WriteLog("Configuration loaded...");
-        } catch (Exception e) {
-            WriteLog("Failed to load the configuration ("+e.getMessage()+")...");
+    public void LoadConfig(String aXML) {
+        if (LoadXMLDocument(aXML)) {
+            FManager.UnRegisterClassifyItems();
+            FManager.SetElementCount(GetElementCountFromDocument());
+            // ToDo
+            WriteLog("Configuration loaded with n sort environments...");
         }
     }
 

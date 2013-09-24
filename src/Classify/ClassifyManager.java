@@ -100,6 +100,12 @@ public class ClassifyManager {
         }
     }
 
+    public void UnRegisterClassifyItems() {
+        Terminate();
+        CloseStages();
+        FItems.clear();
+    }
+
     public void RegisterClassifyItem(ClassifyItem aClassifyItem) {
         aClassifyItem.ElementGenerator = FElementGenerator;
         aClassifyItem.Initialize();
