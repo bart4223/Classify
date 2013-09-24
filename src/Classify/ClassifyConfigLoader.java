@@ -33,7 +33,7 @@ public class ClassifyConfigLoader {
             FStageController.ConfigLoader = this;
             Parent lRoot = lXMLLoader.getRoot();
             FStage.setTitle("Classify-Configuration");
-            FStage.setScene(new Scene(lRoot, 600, 600, Color.DARKGRAY));
+            FStage.setScene(new Scene(lRoot, 600, 600, Color.GRAY));
             FStage.setResizable(false);
         }
         catch( Exception e) {
