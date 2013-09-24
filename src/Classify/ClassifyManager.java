@@ -26,7 +26,7 @@ public class ClassifyManager {
             FStageController.Manager = this;
             Parent lRoot = lXMLLoader.getRoot();
             FStage.setTitle("Classify-Controller");
-            FStage.setScene(new Scene(lRoot, 670, 128, Color.DARKGRAY));
+            FStage.setScene(new Scene(lRoot, 670, 128, Color.GRAY));
             FStage.setResizable(false);
         }
         catch( Exception e) {

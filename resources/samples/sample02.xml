@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<ClassifyConfig>
+    <Name>SAMPLE02</Name>
+    <Description>Sample 02</Description>
+    <Elements>
+         <Count>42</Count>
+         <MaxValue>300</MaxValue>
+    </Elements>
+    <Items>
+        <Item>
+            <SortAlgorithm>BubbleSortAlgorithm</SortAlgorithm>
+            <Scenario>Scenario2</Scenario>
+        </Item>
+        <Item>
+            <SortAlgorithm>BubbleSortAlgorithm</SortAlgorithm>
+            <Scenario>Scenario3</Scenario>
+        </Item>
+        <Item>
+            <SortAlgorithm>MergeSortAlgorithm</SortAlgorithm>
+            <Scenario>Scenario2</Scenario>
+        </Item>
+        <Item>
+            <SortAlgorithm>MergeSortAlgorithm</SortAlgorithm>
+            <Scenario>Scenario3</Scenario>
+        </Item>
+    </Items>
+</ClassifyConfig>

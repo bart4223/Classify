@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.TextArea?>
 <AnchorPane id="AnchorPane" xmlns:fx="http://javafx.com/fxml" fx:controller="Classify.ClassifyControllerStageController">
-    <HBox id="ControlPane" prefHeight="60" alignment="TOP_LEFT" spacing="10" xmlns:fx="http://javafx.com/fxml">
+    <HBox id="ControlPane" prefHeight="60" alignment="TOP_LEFT" spacing="10" xmlns:fx="http://javafx.com/fxml" >
         <padding><Insets top="15" right="10" bottom="15" left="10"/></padding>
         <Button id="btnConfig" prefWidth="100" text="Config" onAction="#handleConfigAction" fx:id="btnConfig" />
         <Button id="btnShow" prefWidth="100" text="Show" onAction="#handleShowAction" fx:id="btnShow" />
@@ -15,5 +15,5 @@
         <Button id="btnRun" prefWidth="100" text="Run/Stop" onAction="#handleRunAction" fx:id="btnRun" />
         <Button id="btnClearLog" prefWidth="100" text="Clear Log" onAction="#handleClearLogAction" fx:id="btnClearLog" />
     </HBox>
-    <TextArea id="TextArea" minWidth="670" text="" prefRowCount="4" wrapText="true" editable="false" AnchorPane.bottomAnchor="0" fx:id="TextArea"/>
+    <TextArea id="TextArea" minWidth="670" text="" prefRowCount="4" wrapText="true" editable="false" AnchorPane.bottomAnchor="0" style="-fx-background-color: darkgray;" fx:id="TextArea"/>
 </AnchorPane>
