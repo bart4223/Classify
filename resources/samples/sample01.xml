@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
-<ClassifyConfig>
+<ClassifyManager>
     <Name>SAMPLE01</Name>
     <Description>Sample 01</Description>
-    <Elements>
+    <ElementGenerator>
          <Count>30</Count>
          <MaxValue>400</MaxValue>
-    </Elements>
+    </ElementGenerator>
     <Items>
         <Item>
             <SortAlgorithm>BubbleSortAlgorithm</SortAlgorithm>
@@ -16,4 +16,4 @@
             <Scenario>Scenario3</Scenario>
         </Item>
     </Items>
-</ClassifyConfig>
+</ClassifyManager>

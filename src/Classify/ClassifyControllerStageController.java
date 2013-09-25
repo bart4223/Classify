@@ -43,7 +43,14 @@ public class ClassifyControllerStageController {
     }
 
     public void DisplayText(String aText) {
-        TextArea.setText(aText);
+        String lStr = TextArea.getText();
+        if (lStr.length() == 0) {
+            lStr = aText;
+        }
+        else {
+            lStr = lStr + "\n" + aText;
+        }
+        TextArea.setText(lStr);
     }
 
 }

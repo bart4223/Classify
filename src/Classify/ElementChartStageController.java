@@ -62,7 +62,7 @@ public class ElementChartStageController implements Initializable {
             Integer x;
             Integer i = 0;
             Iterator<Integer> iterator = FElements.iterator();
-            gc.setFill(Color.DARKGRAY);
+            gc.setFill(Color.DARKGREEN);
             while (iterator.hasNext()) {
                 x = iterator.next();
                 gc.fillRect(10+i+FElementLineWidth,Canvas.getHeight()-10-FElementLineWidth-x,FElementLineWidth,x);

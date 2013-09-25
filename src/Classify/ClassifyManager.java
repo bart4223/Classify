@@ -34,7 +34,7 @@ public class ClassifyManager {
         }
     }
 
-    protected void DisplayMessage(String aText) {
+    protected void WriteLog(String aText) {
         FStageController.DisplayText(aText);
     }
 
@@ -48,7 +48,8 @@ public class ClassifyManager {
     public void Initialize() {
         FConfigLoader.Initialize();
         CreateStage();
-        DisplayMessage("Welcome to classify...");
+        WriteLog("Welcome to classify...");
+        WriteLog("Open the config and load a sample...");
     }
 
     public void ShowController() {

@@ -13,5 +13,5 @@
         <Button id="btnLoad" prefWidth="100" text="Load" onAction="#handleLoadAction" fx:id="btnLoad" />
     </HBox>
     <TextArea id="ConfigXML" minWidth="600" text="" prefRowCount="35" wrapText="true" editable="true" AnchorPane.bottomAnchor="0" style="-fx-background-color: lightgray;" fx:id="ConfigXML"/>
-    <TextArea id="Log" minWidth="600" text="" prefRowCount="4" wrapText="true" editable="false" AnchorPane.bottomAnchor="0" style="-fx-background-color: darkgray;" fx:id="Log"/>
+    <TextArea id="Log" minWidth="600" text="" prefRowCount="4" wrapText="true" editable="false" AnchorPane.bottomAnchor="0" style="-fx-background-color: darkgray; -fx-border-color: lightgray; -fx-border-width: 3;" fx:id="Log"/>
 </AnchorPane>

@@ -54,6 +54,9 @@ public class ClassifyConfigLoader {
             DocumentBuilder lDocBuilder = lDBFactory.newDocumentBuilder();
             ByteArrayInputStream lInputStream = new ByteArrayInputStream(aConfigXML.getBytes());
             FDocument = lDocBuilder.parse(lInputStream);
+            if (!FDocument.getDocumentElement().getNodeName().equals("ClassifyManager")) {
+                throw new Exception("Wrong root element!");
+            }
         } catch (Exception e) {
             FDocument = null;
             WriteLog("Failed to load the configuration ("+e.getMessage()+")!");
@@ -62,11 +65,11 @@ public class ClassifyConfigLoader {
     }
 
     protected Integer GetConfigElementCount() {
-        return (GetDocumentElementValueByNameAsInteger("Elements/Count"));
+        return (GetDocumentElementValueByNameAsInteger("ElementGenerator/Count"));
     }
 
     protected Integer GetConfigElementMaxValue() {
-        return (GetDocumentElementValueByNameAsInteger("Elements/MaxValue"));
+        return (GetDocumentElementValueByNameAsInteger("ElementGenerator/MaxValue"));
     }
 
     protected String GetConfigDescription() {
@@ -106,7 +109,7 @@ public class ClassifyConfigLoader {
                 lResult = lElement.getElementsByTagName(lStrings[i]);
                 if (lResult != null) {
                     lElement = (Element)lResult.item(0);
-                    i = i + 1;
+                    i++;
                 }
                 else {
                     lElement = null;
@@ -159,7 +162,10 @@ public class ClassifyConfigLoader {
                     lString = lString + (char)lContent;
                 }
                 FStageController.DisplayConfigXML(lString);
-                WriteLog("Configuration sample"+aNumber+" submitted...");
+                WriteLog("Configuration Sample "+aNumber+" submitted...");
+            }
+            else {
+                WriteLog("File sample"+aNumber+" not available!");
             }
         } catch (Exception e) {
             WriteLog("Error by submitting sample"+aNumber+"!");
@@ -183,7 +189,7 @@ public class ClassifyConfigLoader {
             }
             FManager.SetElementCount(GetConfigElementCount());
             FManager.SetMaxElementValue(GetConfigElementMaxValue());
-            WriteLog("Configuration (" + lDesc + ") loaded with "+Integer.toString(lCount)+" sort environments...");
+            WriteLog("Configuration " + lDesc + " loaded with "+Integer.toString(lCount)+" sort environments...");
         }
         else {
             WriteLog("No valid config available!");

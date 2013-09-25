@@ -15,5 +15,5 @@
         <Button id="btnRun" prefWidth="100" text="Run/Stop" onAction="#handleRunAction" fx:id="btnRun" />
         <Button id="btnClearLog" prefWidth="100" text="Clear Log" onAction="#handleClearLogAction" fx:id="btnClearLog" />
     </HBox>
-    <TextArea id="TextArea" minWidth="670" text="" prefRowCount="4" wrapText="true" editable="false" AnchorPane.bottomAnchor="0" style="-fx-background-color: darkgray;" fx:id="TextArea"/>
+    <TextArea id="TextArea" minWidth="670" text="" prefRowCount="4" wrapText="true" editable="false" AnchorPane.bottomAnchor="0" style="-fx-background-color: darkgray; -fx-border-color: gray; -fx-border-width: 3;" fx:id="TextArea"/>
 </AnchorPane>
