@@ -1,15 +1,23 @@
 <?xml version="1.0"?>
 <ClassifyManager>
-    <Name>SAMPLE02</Name>
-    <Description>Sample 02</Description>
+    <Name>SAMPLE03</Name>
+    <Description>Sample 03</Description>
     <ElementGenerator>
-         <Count>30</Count>
-         <MaxValue>400</MaxValue>
+         <Count>40</Count>
+         <MaxValue>300</MaxValue>
     </ElementGenerator>
     <Items>
         <Item>
             <SortAlgorithm>BubbleSortAlgorithm</SortAlgorithm>
+            <Scenario>Scenario2</Scenario>
+        </Item>
+        <Item>
+            <SortAlgorithm>BubbleSortAlgorithm</SortAlgorithm>
             <Scenario>Scenario3</Scenario>
+        </Item>
+        <Item>
+            <SortAlgorithm>MergeSortAlgorithm</SortAlgorithm>
+            <Scenario>Scenario2</Scenario>
         </Item>
         <Item>
             <SortAlgorithm>MergeSortAlgorithm</SortAlgorithm>

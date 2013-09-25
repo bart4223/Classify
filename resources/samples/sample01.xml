@@ -3,17 +3,13 @@
     <Name>SAMPLE01</Name>
     <Description>Sample 01</Description>
     <ElementGenerator>
-         <Count>30</Count>
-         <MaxValue>400</MaxValue>
+         <Count>10</Count>
+         <MaxValue>100</MaxValue>
     </ElementGenerator>
     <Items>
         <Item>
             <SortAlgorithm>BubbleSortAlgorithm</SortAlgorithm>
-            <Scenario>Scenario3</Scenario>
-        </Item>
-        <Item>
-            <SortAlgorithm>MergeSortAlgorithm</SortAlgorithm>
-            <Scenario>Scenario3</Scenario>
+            <Scenario>Scenario2</Scenario>
         </Item>
     </Items>
 </ClassifyManager>

@@ -25,6 +25,11 @@ public class ClassifyConfigStageController {
     }
 
     @FXML
+    private void handleSample03Action(ActionEvent event) {
+        ConfigLoader.SubmitSample("03");
+    }
+
+    @FXML
     private void handleLoadAction(ActionEvent event) {
         ConfigLoader.LoadConfig(ConfigXML.getText());
     }

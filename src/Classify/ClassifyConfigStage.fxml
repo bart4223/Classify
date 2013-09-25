@@ -10,6 +10,7 @@
         <padding><Insets top="15" right="10" bottom="15" left="10"/></padding>
         <Button id="btnSample01" prefWidth="100" text="Sample 01" onAction="#handleSample01Action" fx:id="btnSample01" />
         <Button id="btnSample02" prefWidth="100" text="Sample 02" onAction="#handleSample02Action" fx:id="btnSample02" />
+        <Button id="btnSample03" prefWidth="100" text="Sample 03" onAction="#handleSample03Action" fx:id="btnSample03" />
         <Button id="btnLoad" prefWidth="100" text="Load" onAction="#handleLoadAction" fx:id="btnLoad" />
     </HBox>
     <TextArea id="ConfigXML" minWidth="600" text="" prefRowCount="35" wrapText="true" editable="true" AnchorPane.bottomAnchor="0" style="-fx-background-color: lightgray;" fx:id="ConfigXML"/>
