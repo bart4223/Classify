@@ -9,6 +9,7 @@ public class SortAlgorithm {
     protected Boolean FInProgress;
     protected Boolean FInterrupted;
     protected Boolean FTerminated;
+    protected Boolean FSorted;
     protected ArrayList<Integer> FElements;
     protected List FEventListeners;
     protected Integer FSortSteps;
@@ -32,6 +33,7 @@ public class SortAlgorithm {
     protected void OneStepSorted() throws Exception{
         IncreaseSortSteps();
         RaiseOneStepSortedEvent();
+        //FInterrupted = true;
         while (FInterrupted) {
             try {
                 sleep(100);
@@ -95,6 +97,7 @@ public class SortAlgorithm {
         FInProgress = false;
         FInterrupted = false;
         FTerminated = false;
+        FSorted = false;
         FDescription = "";
         FSortSteps = 0;
         FStartTime = 0;
@@ -107,6 +110,7 @@ public class SortAlgorithm {
 
     public void SetElements(ArrayList<Integer> aValue) {
         FElements = aValue;
+        FSorted = false;
     }
 
     public ArrayList<Integer> GetElements() {
@@ -129,10 +133,11 @@ public class SortAlgorithm {
     }
 
     public void Execute() {
-        if (!FInProgress) {
+        if (!FInProgress && !FSorted) {
             BeforeExecute();
             try {
                 DoExecute();
+                FSorted = true;
             } catch (Exception e) {
                 FTerminated = false;
             }

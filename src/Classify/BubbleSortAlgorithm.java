@@ -9,6 +9,7 @@ public class BubbleSortAlgorithm extends SortAlgorithm{
                 if (FElements.get(i) > FElements.get(i+1)) {
                     Swap(i,i+1);
                 }
+                OneStepSorted();
             }
         }
     }
@@ -17,7 +18,6 @@ public class BubbleSortAlgorithm extends SortAlgorithm{
         int x = FElements.get(aI);
         FElements.set(aI, FElements.get(aJ));
         FElements.set(aJ, x);
-        OneStepSorted();
     }
 
     public BubbleSortAlgorithm() {

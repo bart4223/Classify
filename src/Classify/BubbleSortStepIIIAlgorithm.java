@@ -12,6 +12,7 @@ public class BubbleSortStepIIIAlgorithm extends BubbleSortAlgorithm{
                     Swap(i, i+1);
                     newn = i+1;
                 } // ende if
+                OneStepSorted();
             } // ende for
             n = newn;
         } while (n > 1);

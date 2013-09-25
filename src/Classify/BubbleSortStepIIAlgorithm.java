@@ -13,6 +13,7 @@ public class BubbleSortStepIIAlgorithm extends BubbleSortAlgorithm{
                     Swap(i, i+1);
                     swapped = true;
                 } // ende if
+                OneStepSorted();
             } // ende for
             n = n-1;
         } while (swapped == true);
