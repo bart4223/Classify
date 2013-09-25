@@ -76,22 +76,23 @@ public class ClassifyConfigLoader {
     protected ArrayList<ClassifyItem> GetConfigItems() {
         ArrayList<ClassifyItem> lResult = new ArrayList<ClassifyItem>();
         NodeList lNodes = GetDocumentElementsByName("Items/Item");
-        for (int i=0;i<lNodes.getLength();i++) {
-            NodeList lNodesSub;
-            String lSortAlgorithm = "";
-            String lScenarioStr = "";
-            Element lElement = (Element)lNodes.item(i);
-            lNodesSub = lElement.getElementsByTagName("SortAlgorithm");
-            if (lNodesSub.getLength()>0){
-                lSortAlgorithm = "Classify."+lNodesSub.item(0).getTextContent();
+        if (lNodes != null) {
+            for (int i=0;i<lNodes.getLength();i++) {
+                NodeList lNodesSub;
+                String lSortAlgorithm = "";
+                String lScenarioStr = "";
+                Element lElement = (Element)lNodes.item(i);
+                lNodesSub = lElement.getElementsByTagName("SortAlgorithm");
+                if (lNodesSub.getLength()>0){
+                    lSortAlgorithm = "Classify."+lNodesSub.item(0).getTextContent();
+                }
+                lNodesSub = lElement.getElementsByTagName("Scenario");
+                if (lNodesSub.getLength()>0){
+                    lScenarioStr = lNodesSub.item(0).getTextContent();
+                }
+                lResult.add(new ClassifyItem(lSortAlgorithm,ElementGenerator.Scenarios.valueOf(lScenarioStr)));
             }
-            lNodesSub = lElement.getElementsByTagName("Scenario");
-            if (lNodesSub.getLength()>0){
-                lScenarioStr = lNodesSub.item(0).getTextContent();
-            }
-            lResult.add(new ClassifyItem(lSortAlgorithm,ElementGenerator.Scenarios.valueOf(lScenarioStr)));
         }
-
         return lResult;
     }
 
@@ -101,11 +102,14 @@ public class ClassifyConfigLoader {
         NodeList lResult = null;
         if (FDocument != null) {
             Element lElement = FDocument.getDocumentElement();
-            while (i < lStrings.length){
+            while (i < lStrings.length && lElement != null) {
                 lResult = lElement.getElementsByTagName(lStrings[i]);
                 if (lResult != null) {
                     lElement = (Element)lResult.item(0);
                     i = i + 1;
+                }
+                else {
+                    lElement = null;
                 }
             }
         }
@@ -165,17 +169,24 @@ public class ClassifyConfigLoader {
     public void LoadConfig(String aXML) {
         if (LoadXMLDocument(aXML)) {
             String lDesc;
+            Integer lCount = 0;
             ArrayList<ClassifyItem> lItems;
             FManager.UnRegisterClassifyItems();
             lDesc = GetConfigDescription();
             lItems = GetConfigItems();
-            Iterator lItr = lItems.iterator();
-            while(lItr.hasNext())  {
-                FManager.RegisterClassifyItem((ClassifyItem) lItr.next());
+            if (lItems != null) {
+                lCount = lItems.size();
+                Iterator lItr = lItems.iterator();
+                while(lItr.hasNext())  {
+                    FManager.RegisterClassifyItem((ClassifyItem) lItr.next());
+                }
             }
             FManager.SetElementCount(GetConfigElementCount());
             FManager.SetMaxElementValue(GetConfigElementMaxValue());
-            WriteLog("Configuration (" + lDesc + ") loaded with "+Integer.toString(lItems.size())+" sort environments...");
+            WriteLog("Configuration (" + lDesc + ") loaded with "+Integer.toString(lCount)+" sort environments...");
+        }
+        else {
+            WriteLog("No valid config available!");
         }
     }
 
