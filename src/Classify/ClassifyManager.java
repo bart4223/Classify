@@ -54,6 +54,7 @@ public class ClassifyManager implements TickListener {
     }
 
     protected void Terminate() {
+        FTickGenerator.SetItemEnabled("MAIN",false);
         Iterator lItr = FItems.iterator();
         while(lItr.hasNext())  {
             ((ClassifyItem)lItr.next()).Terminate();

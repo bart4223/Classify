@@ -26,7 +26,7 @@ public class SortAlgorithm {
         lEvent.Elements = FElements;
         Iterator lItr = FEventListeners.iterator();
         while(lItr.hasNext())  {
-            ((ClassifyEventListener)lItr.next()).handleOneStepSorted(lEvent);
+            ((ClassifyEventListener)lItr.next()).handleOneStep(lEvent);
         }
     }
 

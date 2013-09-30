@@ -2,9 +2,10 @@ package Classify;
 
 public class InsertSortAlgorithm extends SortAlgorithm {
 
+    @Override
     protected void DoExecute() throws Exception{
         FElements.add(0,0);
-        for (int i=2; i<FElements.size(); i=i+1){
+        for (int i=2; i<FElements.size(); i++){
             int x = FElements.get(i);
             FElements.set(0, x);
             int j = i - 1;

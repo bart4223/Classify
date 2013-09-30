@@ -116,7 +116,7 @@ public class ClassifyItem implements ClassifyEventListener {
     }
 
     @Override
-    public void handleOneStepSorted(ClassifySortEvent e) {
+    public void handleOneStep(ClassifySortEvent e) {
         DisplayElements(e.Elements);
     }
 
