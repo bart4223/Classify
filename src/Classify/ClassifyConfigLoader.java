@@ -20,8 +20,10 @@ public class ClassifyConfigLoader {
 
     protected ClassifyManager FManager;
     protected Stage FStage;
+    protected Stage FHelpStage;
     protected ArrayList<LogEntry> FLogEntries;
     protected ClassifyConfigStageController FStageController;
+    protected ClassifyConfigHelpStageController FHelpStageController;
     protected Document FDocument;
 
     protected void CreateStage(){
@@ -35,6 +37,23 @@ public class ClassifyConfigLoader {
             FStage.setTitle("Classify-Configuration");
             FStage.setScene(new Scene(lRoot, 600, 600, Color.GRAY));
             FStage.setResizable(false);
+        }
+        catch( Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void CreateHelpStage(){
+        FHelpStage = new Stage();
+        FXMLLoader lXMLLoader = new FXMLLoader(getClass().getResource("ClassifyConfigHelpStage.fxml"));
+        try {
+            lXMLLoader.load();
+            FHelpStageController = (ClassifyConfigHelpStageController)lXMLLoader.getController();
+            FHelpStageController.ConfigLoader = this;
+            Parent lRoot = lXMLLoader.getRoot();
+            FHelpStage.setTitle("Classify-Configuration-Help");
+            FHelpStage.setScene(new Scene(lRoot, 600, 600, Color.GRAY));
+            FHelpStage.setResizable(false);
         }
         catch( Exception e) {
             e.printStackTrace();
@@ -150,10 +169,16 @@ public class ClassifyConfigLoader {
 
     public void Initialize() {
         CreateStage();
+        CreateHelpStage();
     }
 
     public void ShowConfig() {
         FStage.show();
+    }
+
+    public void ShowHelp() {
+        FHelpStageController.DisplayHelp(FManager.LoadResourceFileContent("texts/help.txt"));
+        FHelpStage.show();
     }
 
     public void SubmitSample(String aNumber) {

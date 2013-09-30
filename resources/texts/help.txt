@@ -1,0 +1,34 @@
+Welcome to classify!
+
+This document describes the configuration of classify.
+
+This Tokens are available:
+1. <Name> and <Description>
+    Name and Description of sample
+2. <ElementGenerator>
+    2.1. <Count>
+        Count of generated elements
+    2.2. <MaxValue>
+        Maximum value of generated elements
+3. <TickGenerator>
+    2.1. <Interval>
+        Interval = Value * 10ms
+4. <Items>
+    4.1. <Item>
+        4.1.1. <SortAlgorithm>
+            This is the name of sort algorithm class
+            Current available:
+                BubbleSortAlgorithm
+                MergeSortAlgorithm
+        4.1.2 <Scenario>
+            This describes the element scenario of generated elements from generator
+            Current available:
+                Scenario1 = different randomized values
+                Scenario2 = reversed sorted values
+                Scenario3 = common randomized values
+
+Load the samples and customize your classify adventure.
+
+Good luck and have fun!
+
+Copyright by NG MMXIII

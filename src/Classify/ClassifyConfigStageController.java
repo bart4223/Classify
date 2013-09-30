@@ -34,6 +34,11 @@ public class ClassifyConfigStageController {
         ConfigLoader.LoadConfig(ConfigXML.getText());
     }
 
+    @FXML
+    private void handleHelpAction(ActionEvent event) {
+        ConfigLoader.ShowHelp();
+    }
+
     public void DisplayConfigXML(String aXMLText) {
         ConfigXML.setText(aXMLText);
     }
