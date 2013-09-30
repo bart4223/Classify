@@ -6,16 +6,19 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.*;
 
-public class ClassifyManager {
+public class ClassifyManager implements TickListener {
 
     protected Stage FStage;
+    protected Boolean FInitialized;
     protected ClassifyControllerStageController FStageController;
     protected ArrayList<ClassifyItem> FItems;
     protected ElementGenerator FElementGenerator;
     protected ClassifyConfigLoader FConfigLoader;
+    protected TickGenerator FTickGenerator;
 
     protected void CreateStage(){
         FStage = new Stage();
@@ -38,18 +41,55 @@ public class ClassifyManager {
         FStageController.DisplayText(aText);
     }
 
+    protected void DoTick() {
+        Iterator lItr = FItems.iterator();
+        while(lItr.hasNext())  {
+            ((ClassifyItem)lItr.next()).Run();
+        }
+    }
+
+    protected void UpdateController() {
+        FStageController.UpdateControls();
+    }
+
+    protected void Terminate() {
+        Iterator lItr = FItems.iterator();
+        while(lItr.hasNext())  {
+            ((ClassifyItem)lItr.next()).Terminate();
+        }
+    }
+
+    protected void InitConfig(){
+        FConfigLoader.Initialize();
+    }
+
+    protected void InitTickGenerator() {
+        FTickGenerator.Initialize();
+        FTickGenerator.NewItem("MAIN",100);
+        FTickGenerator.addListener("MAIN",this);
+    }
+
     public ClassifyManager() {
         FItems = new ArrayList<ClassifyItem>();
         FConfigLoader = new ClassifyConfigLoader(this);
         FElementGenerator = new ElementGenerator();
         FElementGenerator.SetCount(42);
+        FTickGenerator = new TickGenerator();
+        FInitialized = false;
     }
 
     public void Initialize() {
-        FConfigLoader.Initialize();
         CreateStage();
-        WriteLog("Welcome to classify...");
-        WriteLog("Open the config and load a sample...");
+        InitConfig();
+        InitTickGenerator();
+        WriteLog(LoadResourceFileContent("texts/welcome.txt"));
+        FInitialized = true;
+        UpdateController();
+    }
+
+    public void Finalize() {
+        FTickGenerator.Finalize();
+        Terminate();
     }
 
     public void ShowController() {
@@ -74,23 +114,14 @@ public class ClassifyManager {
         }
     }
 
-    public void Terminate() {
-        Iterator lItr = FItems.iterator();
-        while(lItr.hasNext())  {
-            ((ClassifyItem)lItr.next()).Terminate();
-        }
-    }
-
     public void Clear() {
         Terminate();
         FItems.clear();
     }
 
-    public void Run() {
-        Iterator lItr = FItems.iterator();
-        while(lItr.hasNext())  {
-            ((ClassifyItem)lItr.next()).Run();
-        }
+    public void ToggleRun() {
+        FTickGenerator.SetItemEnabled("MAIN",!IsRunning());
+        UpdateController();
     }
 
     public void InitRun() {
@@ -105,12 +136,14 @@ public class ClassifyManager {
         Terminate();
         CloseStages();
         FItems.clear();
+        UpdateController();
     }
 
     public void RegisterClassifyItem(ClassifyItem aClassifyItem) {
         aClassifyItem.ElementGenerator = FElementGenerator;
         aClassifyItem.Initialize();
         FItems.add(aClassifyItem);
+        UpdateController();
     }
 
     public void ClearLog() {
@@ -126,6 +159,38 @@ public class ClassifyManager {
 
     public void SetMaxElementValue(Integer aMaxValue) {
         FElementGenerator.SetMaxValue(aMaxValue);
+    }
+
+    public void SetTickInterval(Integer aInterval) {
+        FTickGenerator.SetItemInterval("MAIN",aInterval);
+    }
+
+    public Boolean HasItems() {
+        return FItems.size() > 0;
+    }
+
+    public Boolean IsRunning() {
+        return FTickGenerator.GetItemEnabled("MAIN");
+    }
+
+    public String LoadResourceFileContent(String aFilename) {
+        String lResult = "";
+        try {
+            InputStream lFileStream = new FileInputStream("resources/"+aFilename);
+            if (lFileStream != null) {
+                int lContent;
+                while ((lContent = lFileStream.read()) != -1) {
+                    lResult = lResult + (char)lContent;
+                }
+            }
+        } catch (Exception e) {
+        }
+        return lResult;
+    }
+
+    @Override
+    public void handleTick(TickEvent e) {
+        DoTick();
     }
 
 }

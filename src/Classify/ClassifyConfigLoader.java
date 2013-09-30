@@ -72,6 +72,10 @@ public class ClassifyConfigLoader {
         return (GetDocumentElementValueByNameAsInteger("ElementGenerator/MaxValue"));
     }
 
+    protected Integer GetConfigTickGeneratorInterval() {
+        return (GetDocumentElementValueByNameAsInteger("TickGenerator/Interval"));
+    }
+
     protected String GetConfigDescription() {
         return (GetDocumentElementValueByNameAsString("Description"));
     }
@@ -153,23 +157,12 @@ public class ClassifyConfigLoader {
     }
 
     public void SubmitSample(String aNumber) {
-        try {
-            InputStream lFileStream = new FileInputStream("resources/samples/sample"+aNumber+".xml");
-            String lString = "";
-            if (lFileStream != null) {
-                int lContent;
-                while ((lContent = lFileStream.read()) != -1) {
-                    lString = lString + (char)lContent;
-                }
-                FStageController.DisplayConfigXML(lString);
-                WriteLog("Configuration Sample "+aNumber+" submitted...");
-            }
-            else {
-                WriteLog("File sample"+aNumber+" not available!");
-            }
-        } catch (Exception e) {
-            WriteLog("Error by submitting sample"+aNumber+"!");
-        }
+        String lContent = FManager.LoadResourceFileContent("samples/sample"+aNumber+".xml");
+        if (lContent=="")
+            WriteLog("File sample"+aNumber+" not available!");
+        else
+            WriteLog("Configuration Sample "+aNumber+" submitted...");
+        FStageController.DisplayConfigXML(lContent);
     }
 
     public void LoadConfig(String aXML) {
@@ -189,6 +182,7 @@ public class ClassifyConfigLoader {
             }
             FManager.SetElementCount(GetConfigElementCount());
             FManager.SetMaxElementValue(GetConfigElementMaxValue());
+            FManager.SetTickInterval(GetConfigTickGeneratorInterval());
             WriteLog("Configuration " + lDesc + " loaded with "+Integer.toString(lCount)+" sort environments...");
         }
         else {

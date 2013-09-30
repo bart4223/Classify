@@ -6,6 +6,9 @@
          <Count>10</Count>
          <MaxValue>100</MaxValue>
     </ElementGenerator>
+    <TickGenerator>
+        <Interval>5</Interval>
+    </TickGenerator>
     <Items>
         <Item>
             <SortAlgorithm>BubbleSortAlgorithm</SortAlgorithm>

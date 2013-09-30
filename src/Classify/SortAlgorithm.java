@@ -33,14 +33,13 @@ public class SortAlgorithm {
     protected void OneStepSorted() throws Exception{
         IncreaseSortSteps();
         RaiseOneStepSortedEvent();
-        //FInterrupted = true;
+        FInterrupted = true;
         while (FInterrupted) {
             try {
-                sleep(100);
+                sleep(10);
             } catch (Exception e) {
             }
         }
-        Thread.sleep(50);
         if (FTerminated) {
             throw new Exception();
         }
@@ -52,7 +51,7 @@ public class SortAlgorithm {
         FTerminated = false;
         FSortSteps = 0;
         FStartTime = System.currentTimeMillis();
-        WriteLog("Start Sort of "+Integer.toString(GetElementSize())+" Elements");
+        WriteLog("Start sort of "+Integer.toString(GetElementSize())+" elements");
     }
 
     protected Integer IncreaseSortSteps() {
@@ -69,9 +68,9 @@ public class SortAlgorithm {
 
     protected void AfterExecute() {
         FEndTime = System.currentTimeMillis();
-        WriteLog("Time used "+((FEndTime-FStartTime)/1000)+" sec");
-        WriteLog("Sort in "+Integer.toString(FSortSteps)+" Steps");
-        WriteLog("End Sort of "+Integer.toString(GetElementSize())+" Elements");
+        WriteLog("Time used "+((FEndTime-FStartTime)/1000)+" seconds");
+        WriteLog("Sort in "+Integer.toString(FSortSteps)+" steps");
+        WriteLog("End sort of "+Integer.toString(GetElementSize())+" elements");
         FInProgress = false;
     }
 
@@ -128,6 +127,7 @@ public class SortAlgorithm {
     public synchronized void addEventListener(ClassifyEventListener aListener)  {
         FEventListeners.add(aListener);
     }
+
     public synchronized void removeEventListener(ClassifyEventListener aListener)   {
         FEventListeners.remove(aListener);
     }

@@ -13,6 +13,21 @@ public class ClassifyControllerStageController {
     private TextArea TextArea;
 
     @FXML
+    private Button btnShow;
+
+    @FXML
+    private Button btnClose;
+
+    @FXML
+    private Button btnInit;
+
+    @FXML
+    private Button btnRun;
+
+    @FXML
+    private Button btnClearLog;
+
+    @FXML
     private void handleShowAction(ActionEvent event) {
        Manager.ShowStages();
     }
@@ -24,7 +39,7 @@ public class ClassifyControllerStageController {
 
     @FXML
     private void handleRunAction(ActionEvent event) {
-        Manager.Run();
+        Manager.ToggleRun();
     }
 
     @FXML
@@ -51,6 +66,28 @@ public class ClassifyControllerStageController {
             lStr = lStr + "\n" + aText;
         }
         TextArea.setText(lStr);
+    }
+
+    public void UpdateControls() {
+        if (Manager.HasItems()) {
+            btnShow.setDisable(false);
+            btnClose.setDisable(false);
+            btnInit.setDisable(false);
+            if (Manager.IsRunning())
+                btnRun.setText("Stop");
+            else
+                btnRun.setText("Start");
+            btnRun.setDisable(false);
+            btnClearLog.setDisable(false);
+        }
+        else {
+            btnShow.setDisable(true);
+            btnClose.setDisable(true);
+            btnInit.setDisable(true);
+            btnRun.setText("Start");
+            btnRun.setDisable(true);
+            btnClearLog.setDisable(true);
+        }
     }
 
 }

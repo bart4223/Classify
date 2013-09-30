@@ -76,6 +76,7 @@ public class ClassifyItem implements ClassifyEventListener {
         if (FTimer != null) {
             FTimer.cancel();
         }
+        FTimerRunning = false;
     }
 
     public void InitRun() {
