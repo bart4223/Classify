@@ -11,7 +11,9 @@ This Tokens are available:
     2.2. <MaxValue>
         Maximum value of generated elements
 3. <TickGenerator>
-    2.1. <Interval>
+    2.1. Enabled
+        Step by Step or Generator driven
+    2.2. <Interval>
         Interval = Value * 10ms
 4. <Items>
     4.1. <Item>
@@ -20,6 +22,7 @@ This Tokens are available:
             Current available:
                 BubbleSortAlgorithm
                 MergeSortAlgorithm
+                InsertSortAlgorithm
         4.1.2 <Scenario>
             This describes the element scenario of generated elements from generator
             Current available:
