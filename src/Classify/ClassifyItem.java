@@ -110,15 +110,24 @@ public class ClassifyItem implements ClassifyEventListener {
             ToggleInterrupted();
     }
 
+    protected void DisplayElements(ArrayList<Integer> aElements) {
+        FStageController.SetElements(aElements);
+        FStageController.RenderElements();
+    }
+
     @Override
     public void handleOneStepSorted(ClassifySortEvent e) {
-        FStageController.SetElements(e.Elements);
-        FStageController.RenderElements();
+        DisplayElements(e.Elements);
     }
 
     @Override
     public void handleWriteLog(ClassifyLogEvent e) {
         FStageController.DisplayLogEntry(e.LogEntry);
+    }
+
+    @Override
+    public void handleSortFinished(ClassifySortEvent e) {
+        DisplayElements(e.Elements);
     }
 
     public void ClearLog() {

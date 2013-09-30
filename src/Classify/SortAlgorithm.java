@@ -90,6 +90,20 @@ public class SortAlgorithm {
         }
     }
 
+    protected synchronized void RaiseSortFinished() {
+        ClassifySortEvent lEvent = new ClassifySortEvent(this);
+        lEvent.Elements = FElements;
+        Iterator lItr = FEventListeners.iterator();
+        while(lItr.hasNext())  {
+            ((ClassifyEventListener)lItr.next()).handleSortFinished(lEvent);
+        }
+    }
+
+    protected void DoFinished() {
+        FSorted = true;
+        RaiseSortFinished();
+    }
+
     public SortAlgorithm() {
         FEventListeners= new ArrayList();
         FLogEntries = new ArrayList<LogEntry>();
@@ -137,7 +151,7 @@ public class SortAlgorithm {
             BeforeExecute();
             try {
                 DoExecute();
-                FSorted = true;
+                DoFinished();
             } catch (Exception e) {
                 FTerminated = false;
             }

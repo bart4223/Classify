@@ -7,11 +7,12 @@
          <MaxValue>100</MaxValue>
     </ElementGenerator>
     <TickGenerator>
+        <Enabled>false</Enabled>
         <Interval>5</Interval>
     </TickGenerator>
     <Items>
         <Item>
-            <SortAlgorithm>BubbleSortAlgorithm</SortAlgorithm>
+            <SortAlgorithm>InsertSortAlgorithm</SortAlgorithm>
             <Scenario>Scenario2</Scenario>
         </Item>
     </Items>

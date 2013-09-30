@@ -99,6 +99,10 @@ public class ClassifyConfigLoader {
         return (GetDocumentElementValueByNameAsString("Description"));
     }
 
+    protected Boolean GetTickGeneratorEnabled() {
+        return (GetDocumentElementValueByNameAsBoolean("TickGenerator/Enabled"));
+    }
+
     protected ArrayList<ClassifyItem> GetConfigItems() {
         ArrayList<ClassifyItem> lResult = new ArrayList<ClassifyItem>();
         NodeList lNodes = GetDocumentElementsByName("Items/Item");
@@ -140,6 +144,15 @@ public class ClassifyConfigLoader {
             }
         }
         return lResult;
+    }
+
+    protected Boolean GetDocumentElementValueByNameAsBoolean(String aPath) {
+        String lResult = "";
+        NodeList lNodes = GetDocumentElementsByName(aPath);
+        if (lNodes != null && lNodes.getLength() > 0) {
+            lResult = lNodes.item(0).getTextContent();
+        }
+        return Boolean.parseBoolean(lResult);
     }
 
     protected String GetDocumentElementValueByNameAsString(String aPath) {
@@ -208,6 +221,7 @@ public class ClassifyConfigLoader {
             FManager.SetElementCount(GetConfigElementCount());
             FManager.SetMaxElementValue(GetConfigElementMaxValue());
             FManager.SetTickInterval(GetConfigTickGeneratorInterval());
+            FManager.SetTickGeneratorEnabled(GetTickGeneratorEnabled());
             WriteLog("Configuration " + lDesc + " loaded with "+Integer.toString(lCount)+" sort environments...");
         }
         else {

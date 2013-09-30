@@ -7,6 +7,7 @@
          <MaxValue>400</MaxValue>
     </ElementGenerator>
     <TickGenerator>
+        <Enabled>true</Enabled>
         <Interval>5</Interval>
     </TickGenerator>
     <Items>

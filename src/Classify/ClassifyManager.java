@@ -14,6 +14,7 @@ public class ClassifyManager implements TickListener {
 
     protected Stage FStage;
     protected Boolean FInitialized;
+    protected Boolean FTickGeneratorEnabled;
     protected ClassifyControllerStageController FStageController;
     protected ArrayList<ClassifyItem> FItems;
     protected ElementGenerator FElementGenerator;
@@ -75,6 +76,7 @@ public class ClassifyManager implements TickListener {
         FElementGenerator = new ElementGenerator();
         FElementGenerator.SetCount(42);
         FTickGenerator = new TickGenerator();
+        FTickGeneratorEnabled = true;
         FInitialized = false;
     }
 
@@ -120,7 +122,10 @@ public class ClassifyManager implements TickListener {
     }
 
     public void ToggleRun() {
-        FTickGenerator.SetItemEnabled("MAIN",!IsRunning());
+        if (FTickGeneratorEnabled)
+            FTickGenerator.SetItemEnabled("MAIN",!IsRunning());
+        else
+            DoTick();
         UpdateController();
     }
 
@@ -163,6 +168,11 @@ public class ClassifyManager implements TickListener {
 
     public void SetTickInterval(Integer aInterval) {
         FTickGenerator.SetItemInterval("MAIN",aInterval);
+    }
+
+    public void SetTickGeneratorEnabled(Boolean aValue) {
+        FTickGenerator.SetItemEnabled("MAIN",false);
+        FTickGeneratorEnabled = aValue;
     }
 
     public Boolean HasItems() {
