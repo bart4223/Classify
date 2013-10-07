@@ -23,6 +23,7 @@ This Tokens are available:
                 BubbleSortAlgorithm
                 MergeSortAlgorithm
                 InsertSortAlgorithm
+                SelectSortAlgorithm
         4.1.2 <Scenario>
             This describes the element scenario of generated elements from generator
             Current available:
