@@ -84,7 +84,7 @@ public class ClassifyItem implements ClassifyEventListener {
         ElementGenerator.Fill(FScenario, FElements);
         FAlgorithm.SetElements(FElements);
         FStageController.SetElements(FElements);
-        FStageController.RenderElements();
+        FStageController.RenderElements(false);
     }
 
     public void Run(){
@@ -110,14 +110,14 @@ public class ClassifyItem implements ClassifyEventListener {
             ToggleInterrupted();
     }
 
-    protected void DisplayElements(ArrayList<Integer> aElements) {
+    protected void DisplayElements(ArrayList<Integer> aElements,Boolean aFinished) {
         FStageController.SetElements(aElements);
-        FStageController.RenderElements();
+        FStageController.RenderElements(aFinished);
     }
 
     @Override
     public void handleOneStep(ClassifySortEvent e) {
-        DisplayElements(e.Elements);
+        DisplayElements(e.Elements,true);
     }
 
     @Override
@@ -127,7 +127,7 @@ public class ClassifyItem implements ClassifyEventListener {
 
     @Override
     public void handleSortFinished(ClassifySortEvent e) {
-        DisplayElements(e.Elements);
+        DisplayElements(e.Elements,false);
     }
 
     public void ClearLog() {

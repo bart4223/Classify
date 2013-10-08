@@ -3,7 +3,7 @@
     <Name>SAMPLE04</Name>
     <Description>Sample 04</Description>
     <ElementGenerator>
-        <Count>30</Count>
+        <Count>20</Count>
         <MaxValue>200</MaxValue>
     </ElementGenerator>
     <TickGenerator>
@@ -17,6 +17,10 @@
         </Item>
         <Item>
             <SortAlgorithm>BubbleSortAlgorithm</SortAlgorithm>
+            <Scenario>Scenario3</Scenario>
+        </Item>
+        <Item>
+            <SortAlgorithm>QuickSortAlgorithm</SortAlgorithm>
             <Scenario>Scenario3</Scenario>
         </Item>
     </Items>

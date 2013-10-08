@@ -56,6 +56,8 @@ public class SortAlgorithm {
 
     protected Integer IncreaseSortSteps() {
         FSortSteps = FSortSteps + 1;
+        if (FSortSteps%100==0)
+            WriteLog("yet steps needed "+Integer.toString(FSortSteps)+"...");
         return FSortSteps;
     }
 

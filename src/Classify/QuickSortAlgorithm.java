@@ -12,7 +12,6 @@ public class QuickSortAlgorithm extends SortAlgorithm {
         int i = aLow;
         int j = aUp;
         int x = FElements.get((aLow+aUp)/2);
-        System.out.println("aLow:"+aLow+" /aUp:"+aUp+" /Div:"+(aLow+aUp)/2);
         do {
             while (FElements.get(i) < x) {
                 i = i + 1;
