@@ -25,6 +25,7 @@ This Tokens are available:
                 InsertSortAlgorithm
                 SelectSortAlgorithm
                 QuickSortAlgorithm
+                SlowSortAlgorithm
         4.1.2 <Scenario>
             This describes the element scenario of generated elements from generator
             Current available:

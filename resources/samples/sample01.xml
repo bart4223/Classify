@@ -12,7 +12,7 @@
     </TickGenerator>
     <Items>
         <Item>
-            <SortAlgorithm>QuickSortAlgorithm</SortAlgorithm>
+            <SortAlgorithm>SlowSortAlgorithm</SortAlgorithm>
             <Scenario>Scenario2</Scenario>
         </Item>
     </Items>

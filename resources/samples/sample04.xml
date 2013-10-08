@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<ClassifyManager>
+    <Name>SAMPLE04</Name>
+    <Description>Sample 04</Description>
+    <ElementGenerator>
+        <Count>30</Count>
+        <MaxValue>200</MaxValue>
+    </ElementGenerator>
+    <TickGenerator>
+        <Enabled>true</Enabled>
+        <Interval>5</Interval>
+    </TickGenerator>
+    <Items>
+        <Item>
+            <SortAlgorithm>SlowSortAlgorithm</SortAlgorithm>
+            <Scenario>Scenario3</Scenario>
+        </Item>
+        <Item>
+            <SortAlgorithm>BubbleSortAlgorithm</SortAlgorithm>
+            <Scenario>Scenario3</Scenario>
+        </Item>
+    </Items>
+</ClassifyManager>
