@@ -23,7 +23,7 @@ public class ElementChartStageController implements Initializable {
     protected GraphicsContext gc;
     protected ArrayList<Integer> FElements;
     protected Integer FElementLineWidth;
-    protected Boolean FIndicatorFlag;
+    protected Boolean FTickIndicatorFlag;
 
     protected void ClearCanvas() {
         gc.setFill(Color.LIGHTGRAY);
@@ -76,8 +76,8 @@ public class ElementChartStageController implements Initializable {
     }
 
     protected void PaintTickIndicator() {
-        FIndicatorFlag = !FIndicatorFlag;
-        if (FIndicatorFlag)
+        FTickIndicatorFlag = !FTickIndicatorFlag;
+        if (FTickIndicatorFlag)
             gc.setFill(Color.DARKGRAY);
         else
             gc.setFill(Color.GRAY);
@@ -86,7 +86,7 @@ public class ElementChartStageController implements Initializable {
 
     public ElementChartStageController() {
         FElementLineWidth = 10;
-        FIndicatorFlag = false;
+        FTickIndicatorFlag = false;
     }
 
     public void SetElements (ArrayList<Integer> aElements) {
