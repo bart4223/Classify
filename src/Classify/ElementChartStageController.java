@@ -1,5 +1,6 @@
 package Classify;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -14,16 +15,24 @@ import javafx.scene.paint.Color;
 
 public class ElementChartStageController implements Initializable {
 
+    public enum PaintMode{Rectangle, Point};
+
     @FXML
     private Canvas Canvas;
 
     @FXML
     private TextArea TextArea;
 
+    @FXML
+    private void handlePaintChoice1Action(ActionEvent event) {
+        //ToDo
+    }
+
     protected GraphicsContext gc;
     protected ArrayList<Integer> FElements;
     protected Integer FElementLineWidth;
-    protected Boolean FTickIndicatorFlag;
+    protected Integer FTickIndicator;
+    protected PaintMode FPaintMode;
 
     protected void ClearCanvas() {
         gc.setFill(Color.LIGHTGRAY);
@@ -41,24 +50,24 @@ public class ElementChartStageController implements Initializable {
         gc.closePath();
     }
 
-    protected void PaintElementsWithLine() {
+    protected void PaintElementsAsPoint() {
         if (FElements != null && FElements.size()>0) {
+            Integer x;
             Integer i = 0;
             Iterator<Integer> iterator = FElements.iterator();
-            gc.beginPath();
+            gc.setFill(Color.DARKGREEN);
             while (iterator.hasNext()) {
-                gc.moveTo(10+i+FElementLineWidth,Canvas.getHeight()-10-FElementLineWidth);
-                gc.lineTo(10+i+FElementLineWidth,Canvas.getHeight()-10-FElementLineWidth-iterator.next());
+                x = iterator.next();
+                gc.fillRect(10+i+FElementLineWidth,Canvas.getHeight()-10-FElementLineWidth-x,FElementLineWidth,FElementLineWidth);
+                gc.setStroke(Color.BLACK);
+                gc.setLineWidth(1);
+                gc.strokeRect(10+i+FElementLineWidth,Canvas.getHeight()-10-FElementLineWidth-x,FElementLineWidth,FElementLineWidth);
                 i = i + FElementLineWidth;
             }
-            gc.setStroke(Color.DARKGRAY);
-            gc.setLineWidth(FElementLineWidth);
-            gc.stroke();
-            gc.closePath();
         }
     }
 
-    protected void PaintElementsWithRect() {
+    protected void PaintElementsAsRect() {
         if (FElements != null && FElements.size()>0) {
             Integer x;
             Integer i = 0;
@@ -69,15 +78,15 @@ public class ElementChartStageController implements Initializable {
                 gc.fillRect(10+i+FElementLineWidth,Canvas.getHeight()-10-FElementLineWidth-x,FElementLineWidth,x);
                 gc.setStroke(Color.BLACK);
                 gc.setLineWidth(1);
-                gc.strokeRect(10 + i + FElementLineWidth, Canvas.getHeight() - 10 - FElementLineWidth - x, FElementLineWidth, x);
+                gc.strokeRect(10+i+FElementLineWidth,Canvas.getHeight()-10-FElementLineWidth-x,FElementLineWidth,x);
                 i = i + FElementLineWidth;
             }
         }
     }
 
     protected void PaintTickIndicator() {
-        FTickIndicatorFlag = !FTickIndicatorFlag;
-        if (FTickIndicatorFlag)
+        FTickIndicator = FTickIndicator + 1;
+        if ((FTickIndicator/10)%2 == 0)
             gc.setFill(Color.DARKGRAY);
         else
             gc.setFill(Color.GRAY);
@@ -86,7 +95,8 @@ public class ElementChartStageController implements Initializable {
 
     public ElementChartStageController() {
         FElementLineWidth = 10;
-        FTickIndicatorFlag = false;
+        FTickIndicator = 0;
+        FPaintMode = PaintMode.Point;
     }
 
     public void SetElements (ArrayList<Integer> aElements) {
@@ -95,9 +105,18 @@ public class ElementChartStageController implements Initializable {
 
     public synchronized void RenderElements(Boolean aWithTickIndicator) {
         ClearCanvas();
-        PaintElementsWithRect();
+        switch(FPaintMode){
+            case Rectangle:
+                PaintElementsAsRect();
+                break;
+            case Point:
+                PaintElementsAsPoint();
+                break;
+        }
         if (aWithTickIndicator)
             PaintTickIndicator();
+        else
+            FTickIndicator = 0;
     }
 
     public void DisplayLogEntry(LogEntry aLogEntry) {

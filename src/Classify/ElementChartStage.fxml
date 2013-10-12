@@ -3,6 +3,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.control.TextArea?>
 <AnchorPane id="AnchorPane" xmlns:fx="http://javafx.com/fxml" fx:controller="Classify.ElementChartStageController">
-    <Canvas id="Canvas" layoutX="0" layoutY="0" height="500" width="500" fx:id="Canvas" />
-    <TextArea id="TextArea" minWidth="500" text="" prefRowCount="4" wrapText="true" editable="false" AnchorPane.bottomAnchor="0" style="-fx-background-color: darkgray; -fx-border-color: lightgray; -fx-border-width: 3;" fx:id="TextArea"/>
+    <Canvas id="Canvas" layoutX="0" layoutY="0" height="500" width="500" AnchorPane.topAnchor="0" fx:id="Canvas" />
+    <TextArea id="TextArea" minWidth="500" text="" prefRowCount="4" wrapText="true" editable="false" AnchorPane.bottomAnchor="1" style="-fx-background-color: darkgray; -fx-border-color: lightgray; -fx-border-width: 3;" fx:id="TextArea"/>
 </AnchorPane>

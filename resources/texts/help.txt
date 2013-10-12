@@ -28,10 +28,12 @@ This Tokens are available:
                 SlowSortAlgorithm
         4.1.2 <Scenario>
             This describes the element scenario of generated elements from generator
-            Current available:
-                Scenario1 = different randomized values
-                Scenario2 = reversed sorted values
+            Current available element scenarios:
+                Scenario1 = reversed sorted values
+                Scenario2 = randomized values
                 Scenario3 = common randomized values
+                Scenario4 = consistently randomized values
+                Scenario5 = common consistently randomized values
 
 Load the samples and customize your classify adventure.
 

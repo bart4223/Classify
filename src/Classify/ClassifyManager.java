@@ -71,6 +71,10 @@ public class ClassifyManager implements TickListener {
         FTickGenerator.addListener("MAIN",this);
     }
 
+    protected void InitElementGenerator() {
+        FElementGenerator.Initialize();
+    }
+
     public ClassifyManager() {
         FItems = new ArrayList<ClassifyItem>();
         FConfigLoader = new ClassifyConfigLoader(this);
@@ -85,6 +89,7 @@ public class ClassifyManager implements TickListener {
         CreateStage();
         InitConfig();
         InitTickGenerator();
+        InitElementGenerator();
         WriteLog(LoadResourceFileContent("texts/welcome.txt"));
         FInitialized = true;
         UpdateController();
@@ -131,7 +136,7 @@ public class ClassifyManager implements TickListener {
     }
 
     public void InitRun() {
-        FElementGenerator.Initialize();
+        FElementGenerator.InitRandom();
         Iterator lItr = FItems.iterator();
         while(lItr.hasNext())  {
             ((ClassifyItem)lItr.next()).InitRun();
