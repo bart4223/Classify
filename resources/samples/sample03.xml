@@ -13,19 +13,19 @@
     <Items>
         <Item>
             <SortAlgorithm>BubbleSortAlgorithm</SortAlgorithm>
-            <Scenario>Scenario2</Scenario>
-        </Item>
-        <Item>
-            <SortAlgorithm>BubbleSortAlgorithm</SortAlgorithm>
-            <Scenario>Scenario3</Scenario>
+            <Scenario>Scenario1</Scenario>
         </Item>
         <Item>
             <SortAlgorithm>MergeSortAlgorithm</SortAlgorithm>
-            <Scenario>Scenario2</Scenario>
+            <Scenario>Scenario1</Scenario>
         </Item>
         <Item>
-            <SortAlgorithm>MergeSortAlgorithm</SortAlgorithm>
-            <Scenario>Scenario3</Scenario>
+            <SortAlgorithm>SelectSortAlgorithm</SortAlgorithm>
+            <Scenario>Scenario1</Scenario>
+        </Item>
+        <Item>
+            <SortAlgorithm>QuickSortAlgorithm</SortAlgorithm>
+            <Scenario>Scenario1</Scenario>
         </Item>
     </Items>
 </ClassifyManager>

@@ -13,11 +13,11 @@
     <Items>
         <Item>
             <SortAlgorithm>BubbleSortAlgorithm</SortAlgorithm>
-            <Scenario>Scenario3</Scenario>
+            <Scenario>Scenario5</Scenario>
         </Item>
         <Item>
-            <SortAlgorithm>MergeSortAlgorithm</SortAlgorithm>
-            <Scenario>Scenario3</Scenario>
+            <SortAlgorithm>QuickSortAlgorithm</SortAlgorithm>
+            <Scenario>Scenario5</Scenario>
         </Item>
     </Items>
 </ClassifyManager>
