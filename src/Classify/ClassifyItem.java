@@ -28,8 +28,9 @@ public class ClassifyItem implements ClassifyEventListener {
             FStageController = (ElementChartStageController)lXMLLoader.getController();
             Parent lRoot = lXMLLoader.getRoot();
             FStage.setTitle(FAlgorithm.GetDescription());
-            FStage.setScene(new Scene(lRoot, 500, 574, Color.LIGHTGRAY));
+            FStage.setScene(new Scene(lRoot, 500, 600, Color.LIGHTGRAY));
             FStage.setResizable(false);
+            FStageController.Initialize();
         }
         catch( Exception e) {
             e.printStackTrace();

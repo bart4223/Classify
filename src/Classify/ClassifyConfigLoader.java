@@ -52,7 +52,7 @@ public class ClassifyConfigLoader {
             FHelpStageController.ConfigLoader = this;
             Parent lRoot = lXMLLoader.getRoot();
             FHelpStage.setTitle("Classify-Configuration-Help");
-            FHelpStage.setScene(new Scene(lRoot, 600, 600, Color.GRAY));
+            FHelpStage.setScene(new Scene(lRoot, 600, 610, Color.GRAY));
             FHelpStage.setResizable(false);
         }
         catch( Exception e) {

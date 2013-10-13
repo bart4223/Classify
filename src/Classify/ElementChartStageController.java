@@ -10,12 +10,14 @@ import javafx.scene.canvas.GraphicsContext;
 import java.util.ResourceBundle;
 import java.net.URL;
 
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.paint.Color;
 
 public class ElementChartStageController implements Initializable {
 
-    public enum PaintMode{Rectangle, Point};
+    public enum PaintMode{Bar, Point};
 
     @FXML
     private Canvas Canvas;
@@ -24,8 +26,14 @@ public class ElementChartStageController implements Initializable {
     private TextArea TextArea;
 
     @FXML
-    private void handlePaintChoice1Action(ActionEvent event) {
-        //ToDo
+    private RadioButton rbPaintBar;
+
+    @FXML
+    private RadioButton rbPaintPoint;
+
+    @FXML
+    private void handlePaintModeAction(ActionEvent event) {
+        UpdatePaintMode();
     }
 
     protected GraphicsContext gc;
@@ -33,10 +41,19 @@ public class ElementChartStageController implements Initializable {
     protected Integer FElementLineWidth;
     protected Integer FTickIndicator;
     protected PaintMode FPaintMode;
+    protected ToggleGroup FPaintModeGroup;
+
+    protected void UpdatePaintMode() {
+        if (rbPaintBar.isSelected())
+            FPaintMode = PaintMode.Bar;
+        else
+            FPaintMode = PaintMode.Point;
+        RenderElements(FTickIndicator!=0);
+    }
 
     protected void ClearCanvas() {
         gc.setFill(Color.LIGHTGRAY);
-        gc.fillRect(12, 0, Canvas.getWidth()-12, Canvas.getHeight()-12);
+        gc.fillRect(12, 0, Canvas.getWidth()-11, Canvas.getHeight()-11);
     }
 
     protected void PaintAxis() {
@@ -67,7 +84,7 @@ public class ElementChartStageController implements Initializable {
         }
     }
 
-    protected void PaintElementsAsRect() {
+    protected void PaintElementsAsBar() {
         if (FElements != null && FElements.size()>0) {
             Integer x;
             Integer i = 0;
@@ -93,10 +110,17 @@ public class ElementChartStageController implements Initializable {
         gc.fillOval(470, 10, 20, 20);
     }
 
+    protected void Initialize() {
+        rbPaintBar.setToggleGroup(FPaintModeGroup);
+        rbPaintBar.setSelected(true);
+        rbPaintPoint.setToggleGroup(FPaintModeGroup);
+        UpdatePaintMode();
+    }
+
     public ElementChartStageController() {
+        FPaintModeGroup = new ToggleGroup();
         FElementLineWidth = 10;
         FTickIndicator = 0;
-        FPaintMode = PaintMode.Point;
     }
 
     public void SetElements (ArrayList<Integer> aElements) {
@@ -106,8 +130,8 @@ public class ElementChartStageController implements Initializable {
     public synchronized void RenderElements(Boolean aWithTickIndicator) {
         ClearCanvas();
         switch(FPaintMode){
-            case Rectangle:
-                PaintElementsAsRect();
+            case Bar:
+                PaintElementsAsBar();
                 break;
             case Point:
                 PaintElementsAsPoint();
