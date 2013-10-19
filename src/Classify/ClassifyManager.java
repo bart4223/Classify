@@ -1,5 +1,8 @@
 package Classify;
 
+import Uniwork.Base.TickGenerator;
+import Uniwork.Base.TickListener;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -205,8 +208,7 @@ public class ClassifyManager implements TickListener {
     }
 
     @Override
-    public void handleTick(TickEvent e) {
+    public void handleTick(Uniwork.Base.TickEvent e) {
         DoTick();
     }
-
 }
