@@ -54,8 +54,7 @@ public class ElementChartStageController implements Initializable {
     }
 
     protected void ClearCanvas() {
-        gc.setFill(Color.LIGHTGRAY);
-        gc.fillRect(12, 0, Canvas.getWidth()-11, Canvas.getHeight()-11);
+        gc.clearRect(12, 0, Canvas.getWidth()-11, Canvas.getHeight()-11);
     }
 
     protected void PaintAxis() {
