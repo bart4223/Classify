@@ -1,5 +1,7 @@
 package Classify;
 
+import Uniwork.Base.LogEntry;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -62,9 +64,9 @@ public class ClassifyConfigLoader {
 
     protected void WriteLog(String aText) {
         Date lDate = new Date();
-        LogEntry aLogEntry = new LogEntry(lDate, aText);
-        FLogEntries.add(aLogEntry);
-        FStageController.DisplayLogEntry(aLogEntry);
+        LogEntry lLogEntry = new LogEntry(lDate, aText);
+        FLogEntries.add(lLogEntry);
+        FStageController.DisplayLogEntry(lLogEntry);
     }
 
     protected boolean LoadXMLDocument(String aConfigXML) {

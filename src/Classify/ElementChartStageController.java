@@ -1,5 +1,7 @@
 package Classify;
 
+import Uniwork.Base.LogEntry;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

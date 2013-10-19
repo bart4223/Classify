@@ -1,5 +1,7 @@
 package Classify;
 
+import Uniwork.Base.LogEntry;
+
 import java.util.*;
 import static java.lang.Thread.sleep;
 
@@ -78,9 +80,9 @@ public class SortAlgorithm {
 
     protected void WriteLog(String aText) {
         Date lDate = new Date();
-        LogEntry aLogEntry = new LogEntry(lDate, aText);
-        FLogEntries.add(aLogEntry);
-        RaiseLogEntryEvent(aLogEntry);
+        LogEntry lLogEntry = new LogEntry(lDate, aText);
+        FLogEntries.add(lLogEntry);
+        RaiseLogEntryEvent(lLogEntry);
     }
 
     protected synchronized void RaiseLogEntryEvent(LogEntry aLogEntry) {
