@@ -38,10 +38,8 @@ public class ClassifyItem implements ClassifyEventListener {
     }
 
     protected void CreateSortAlgorithm() {
-        ClassLoader systemClassLoader = ClassLoader.getSystemClassLoader();
         try {
-            Class lClass = systemClassLoader.loadClass(FAlgorithmClassName);
-            FAlgorithm = (SortAlgorithm)lClass.newInstance();
+            FAlgorithm = (SortAlgorithm)SortAlgorithm.class.getClassLoader().loadClass(FAlgorithmClassName).newInstance();
             FAlgorithm.addEventListener(this);
         } catch (Exception e) {
             e.printStackTrace();

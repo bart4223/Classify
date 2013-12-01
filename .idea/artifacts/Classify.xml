@@ -15,6 +15,7 @@
       <element id="archive" name="Classify.jar">
         <element id="module-output" name="Classify" />
       </element>
+      <element id="artifact" artifact-name="Uniwork" />
     </root>
   </artifact>
 </component>
