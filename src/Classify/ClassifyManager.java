@@ -3,6 +3,7 @@ package Classify;
 import Uniwork.Base.TickGenerator;
 import Uniwork.Base.TickListener;
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,6 +16,7 @@ import java.util.*;
 
 public class ClassifyManager implements TickListener {
 
+    protected Main FApplication;
     protected Stage FStage;
     protected Boolean FInitialized;
     protected Boolean FTickGeneratorEnabled;
@@ -33,7 +35,7 @@ public class ClassifyManager implements TickListener {
             FStageController.Manager = this;
             Parent lRoot = lXMLLoader.getRoot();
             FStage.setTitle("Classify-Controller");
-            FStage.setScene(new Scene(lRoot, 670, 128, Color.GRAY));
+            FStage.setScene(new Scene(lRoot, 780, 128, Color.GRAY));
             FStage.setResizable(false);
         }
         catch( Exception e) {
@@ -78,7 +80,7 @@ public class ClassifyManager implements TickListener {
         FElementGenerator.Initialize();
     }
 
-    public ClassifyManager() {
+    public ClassifyManager(Main aApplication) {
         FItems = new ArrayList<ClassifyItem>();
         FConfigLoader = new ClassifyConfigLoader(this);
         FElementGenerator = new ElementGenerator();
@@ -86,6 +88,7 @@ public class ClassifyManager implements TickListener {
         FTickGenerator = new TickGenerator();
         FTickGeneratorEnabled = true;
         FInitialized = false;
+        FApplication = aApplication;
     }
 
     public void Initialize() {
@@ -211,4 +214,9 @@ public class ClassifyManager implements TickListener {
     public void handleTick(Uniwork.Base.TickEvent e) {
         DoTick();
     }
+
+    public void Shutdown() {
+        Platform.exit();
+    }
+
 }

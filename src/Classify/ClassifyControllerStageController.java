@@ -57,6 +57,11 @@ public class ClassifyControllerStageController {
         Manager.ShowConfig();
     }
 
+    @FXML
+    private void handleExitAction(ActionEvent event) {
+        Manager.Shutdown();
+    }
+
     public void DisplayText(String aText) {
         String lStr = TextArea.getText();
         if (lStr.length() == 0) {

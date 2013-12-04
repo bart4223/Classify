@@ -9,7 +9,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FClassifyManager = new ClassifyManager();
+        FClassifyManager = new ClassifyManager(this);
         FClassifyManager.Initialize();
         FClassifyManager.ShowController();
     }
