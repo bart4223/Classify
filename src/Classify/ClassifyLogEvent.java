@@ -1,10 +1,10 @@
 package Classify;
 
-import Uniwork.Base.LogEntry;
+import Uniwork.Base.NGLogEntry;
 
 public class ClassifyLogEvent extends java.util.EventObject {
 
-    public LogEntry LogEntry;
+    public NGLogEntry LogEntry;
 
     public ClassifyLogEvent(Object source) {
         super(source);

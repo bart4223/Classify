@@ -1,6 +1,6 @@
 package Classify;
 
-import Uniwork.Base.LogEntry;
+import Uniwork.Base.NGLogEntry;
 
 import java.util.*;
 import static java.lang.Thread.sleep;
@@ -17,7 +17,7 @@ public class SortAlgorithm {
     protected Integer FSortSteps;
     protected long FStartTime;
     protected long FEndTime;
-    protected ArrayList<LogEntry> FLogEntries;
+    protected ArrayList<NGLogEntry> FLogEntries;
 
     protected void DoExecute() throws Exception{
         OneStepSorted();
@@ -80,12 +80,12 @@ public class SortAlgorithm {
 
     protected void WriteLog(String aText) {
         Date lDate = new Date();
-        LogEntry lLogEntry = new LogEntry(lDate, aText);
+        NGLogEntry lLogEntry = new NGLogEntry(lDate, aText);
         FLogEntries.add(lLogEntry);
         RaiseLogEntryEvent(lLogEntry);
     }
 
-    protected synchronized void RaiseLogEntryEvent(LogEntry aLogEntry) {
+    protected synchronized void RaiseLogEntryEvent(NGLogEntry aLogEntry) {
         ClassifyLogEvent lEvent = new ClassifyLogEvent(this);
         lEvent.LogEntry = aLogEntry;
         Iterator lItr = FEventListeners.iterator();
@@ -110,7 +110,7 @@ public class SortAlgorithm {
 
     public SortAlgorithm() {
         FEventListeners= new ArrayList();
-        FLogEntries = new ArrayList<LogEntry>();
+        FLogEntries = new ArrayList<NGLogEntry>();
         FInProgress = false;
         FInterrupted = false;
         FTerminated = false;

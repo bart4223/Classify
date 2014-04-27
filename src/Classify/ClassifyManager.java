@@ -1,7 +1,8 @@
 package Classify;
 
-import Uniwork.Base.TickGenerator;
-import Uniwork.Base.TickListener;
+import Uniwork.Base.NGTickEvent;
+import Uniwork.Base.NGTickGenerator;
+import Uniwork.Base.NGTickListener;
 
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +15,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.*;
 
-public class ClassifyManager implements TickListener {
+public class ClassifyManager implements NGTickListener {
 
     protected Main FApplication;
     protected Stage FStage;
@@ -24,7 +25,7 @@ public class ClassifyManager implements TickListener {
     protected ArrayList<ClassifyItem> FItems;
     protected ElementGenerator FElementGenerator;
     protected ClassifyConfigLoader FConfigLoader;
-    protected TickGenerator FTickGenerator;
+    protected NGTickGenerator FTickGenerator;
 
     protected void CreateStage(){
         FStage = new Stage();
@@ -85,7 +86,7 @@ public class ClassifyManager implements TickListener {
         FConfigLoader = new ClassifyConfigLoader(this);
         FElementGenerator = new ElementGenerator();
         FElementGenerator.SetCount(42);
-        FTickGenerator = new TickGenerator();
+        FTickGenerator = new NGTickGenerator();
         FTickGeneratorEnabled = true;
         FInitialized = false;
         FApplication = aApplication;
@@ -211,7 +212,7 @@ public class ClassifyManager implements TickListener {
     }
 
     @Override
-    public void handleTick(Uniwork.Base.TickEvent e) {
+    public void handleTick(NGTickEvent e) {
         DoTick();
     }
 

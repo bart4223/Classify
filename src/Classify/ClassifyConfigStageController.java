@@ -1,6 +1,6 @@
 package Classify;
 
-import Uniwork.Base.LogEntry;
+import Uniwork.Base.NGLogEntry;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,7 +50,7 @@ public class ClassifyConfigStageController {
         ConfigXML.setText(aXMLText);
     }
 
-    public void DisplayLogEntry(LogEntry aLogEntry) {
+    public void DisplayLogEntry(NGLogEntry aLogEntry) {
         String lStr = Log.getText();
         if (lStr.length() == 0) {
             lStr = aLogEntry.GetDateAsString() + "  " + aLogEntry.GetText();

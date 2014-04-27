@@ -1,6 +1,6 @@
 package Classify;
 
-import Uniwork.Base.LogEntry;
+import Uniwork.Base.NGLogEntry;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -144,7 +144,7 @@ public class ElementChartStageController implements Initializable {
             FTickIndicator = 0;
     }
 
-    public void DisplayLogEntry(LogEntry aLogEntry) {
+    public void DisplayLogEntry(NGLogEntry aLogEntry) {
         String lStr = TextArea.getText();
         if (lStr.length() == 0) {
             lStr = aLogEntry.GetDateAsString() + "  " + aLogEntry.GetText();
