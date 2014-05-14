@@ -1,6 +1,6 @@
 package Classify;
 
-import Uniwork.Base.NGLogEntry;
+import Uniwork.Misc.NGLogEntry;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

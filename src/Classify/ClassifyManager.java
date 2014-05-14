@@ -1,8 +1,8 @@
 package Classify;
 
-import Uniwork.Base.NGTickEvent;
-import Uniwork.Base.NGTickGenerator;
-import Uniwork.Base.NGTickListener;
+import Uniwork.Misc.NGTickEvent;
+import Uniwork.Misc.NGTickGenerator;
+import Uniwork.Misc.NGTickListener;
 
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;

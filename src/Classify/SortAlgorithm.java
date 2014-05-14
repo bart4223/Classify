@@ -1,6 +1,6 @@
 package Classify;
 
-import Uniwork.Base.NGLogEntry;
+import Uniwork.Misc.NGLogEntry;
 
 import java.util.*;
 import static java.lang.Thread.sleep;
