@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="javafx" name="Classify">
+  <artifact type="javafx" build-on-make="true" name="Classify">
     <output-path>$PROJECT_DIR$/out/artifacts/Classify</output-path>
     <properties id="javafx-properties">
       <options>
