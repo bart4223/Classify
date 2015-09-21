@@ -58,7 +58,7 @@ public class ClassifyControllerStageController {
     }
 
     @FXML
-    private void handleExitAction(ActionEvent event) {
+    private void handleQuitAction(ActionEvent event) {
         Manager.Shutdown();
     }
 
