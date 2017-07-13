@@ -7,12 +7,13 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ClassifyItem implements ClassifyEventListener {
 
     protected Stage FStage;
     protected ElementChartStageController FStageController;
-    protected ArrayList<Integer> FElements;
+    protected CopyOnWriteArrayList<Integer> FElements;
     protected SortAlgorithm FAlgorithm;
     protected String FAlgorithmClassName;
     protected Boolean FTimerRunning;
@@ -47,7 +48,7 @@ public class ClassifyItem implements ClassifyEventListener {
     }
 
     public ClassifyItem(String aAlgorithmClassName, ElementGenerator.Scenarios aScenario) {
-        FElements = new ArrayList<Integer>();
+        FElements = new CopyOnWriteArrayList<Integer>();
         FAlgorithmClassName = aAlgorithmClassName;
         FTimerRunning = false;
         FScenario = aScenario;
@@ -109,7 +110,7 @@ public class ClassifyItem implements ClassifyEventListener {
             ToggleInterrupted();
     }
 
-    protected void DisplayElements(ArrayList<Integer> aElements,Boolean aFinished) {
+    protected void DisplayElements(CopyOnWriteArrayList<Integer> aElements,Boolean aFinished) {
         FStageController.SetElements(aElements);
         FStageController.RenderElements(aFinished);
     }

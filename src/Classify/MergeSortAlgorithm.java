@@ -1,6 +1,6 @@
 package Classify;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class MergeSortAlgorithm extends SortAlgorithm{
 
@@ -9,9 +9,9 @@ public class MergeSortAlgorithm extends SortAlgorithm{
         MergeSort(FElements, 0, FElements.size()-1);
     }
 
-    protected void MergeSort(ArrayList<Integer> aElements, Integer aL, Integer aR) throws Exception {
+    protected void MergeSort(CopyOnWriteArrayList<Integer> aElements, Integer aL, Integer aR) throws Exception {
         int i, j, k, m;
-        ArrayList<Integer> bElements = new ArrayList<Integer>();
+        CopyOnWriteArrayList<Integer> bElements = new CopyOnWriteArrayList<Integer>();
         for (i=0;i<aElements.size();i++) {
             bElements.add(0);
         }

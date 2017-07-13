@@ -6,11 +6,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
-import java.util.ArrayList;
 import java.util.Iterator;
 import javafx.scene.canvas.GraphicsContext;
 import java.util.ResourceBundle;
 import java.net.URL;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
@@ -39,7 +39,7 @@ public class ElementChartStageController implements Initializable {
     }
 
     protected GraphicsContext gc;
-    protected ArrayList<Integer> FElements;
+    protected CopyOnWriteArrayList<Integer> FElements;
     protected Integer FElementLineWidth;
     protected Integer FTickIndicator;
     protected PaintMode FPaintMode;
@@ -124,7 +124,7 @@ public class ElementChartStageController implements Initializable {
         FTickIndicator = 0;
     }
 
-    public void SetElements (ArrayList<Integer> aElements) {
+    public void SetElements (CopyOnWriteArrayList<Integer> aElements) {
         FElements = aElements;
     }
 

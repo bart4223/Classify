@@ -1,7 +1,7 @@
 package Classify;
 
-import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ElementGenerator {
 
@@ -9,11 +9,11 @@ public class ElementGenerator {
 
     protected Integer FCount;
     protected Integer FMaxValue;
-    protected ArrayList<Integer> FCommonRandomElements;
-    protected ArrayList<Integer> FCommonConsistentlyRandomElements;
+    protected CopyOnWriteArrayList<Integer> FCommonRandomElements;
+    protected CopyOnWriteArrayList<Integer> FCommonConsistentlyRandomElements;
     protected Random FGenerator;
 
-    protected void FillRandom(ArrayList<Integer> aElements) {
+    protected void FillRandom(CopyOnWriteArrayList<Integer> aElements) {
         aElements.clear();
         Integer lRandom;
         for(int i=0; i < FCount; i++) {
@@ -23,13 +23,13 @@ public class ElementGenerator {
         }
     }
 
-    protected void SwapElements(ArrayList<Integer> aElements, Integer aI, Integer aJ) {
+    protected void SwapElements(CopyOnWriteArrayList<Integer> aElements, Integer aI, Integer aJ) {
         int x = aElements.get(aI);
         aElements.set(aI, aElements.get(aJ));
         aElements.set(aJ, x);
     }
 
-    protected void FillConsistentlyRandom(ArrayList<Integer> aElements) {
+    protected void FillConsistentlyRandom(CopyOnWriteArrayList<Integer> aElements) {
         int x;
         int y;
         FillAscending(aElements);
@@ -43,28 +43,28 @@ public class ElementGenerator {
         }
     }
 
-    protected void FillDescending(ArrayList<Integer> aElements) {
+    protected void FillDescending(CopyOnWriteArrayList<Integer> aElements) {
         aElements.clear();
         for(int i=0; i < FCount; i++) {
             aElements.add((FCount-i)*10);
         }
     }
 
-    protected void FillAscending(ArrayList<Integer> aElements) {
+    protected void FillAscending(CopyOnWriteArrayList<Integer> aElements) {
         aElements.clear();
         for(int i=0; i < FCount; i++) {
             aElements.add(i*10);
         }
     }
 
-    protected void FillCommonRandom(ArrayList<Integer> aElements) {
+    protected void FillCommonRandom(CopyOnWriteArrayList<Integer> aElements) {
         aElements.clear();
         for(int i=0; i < FCount; i++) {
             aElements.add(FCommonRandomElements.get(i));
         }
     }
 
-    protected void FillCommonConsistentlyRandom(ArrayList<Integer> aElements) {
+    protected void FillCommonConsistentlyRandom(CopyOnWriteArrayList<Integer> aElements) {
         aElements.clear();
         for(int i=0; i < FCount; i++) {
             aElements.add(FCommonConsistentlyRandomElements.get(i));
@@ -73,8 +73,8 @@ public class ElementGenerator {
 
     public ElementGenerator() {
         FGenerator = new Random();
-        FCommonRandomElements = new ArrayList<Integer>();
-        FCommonConsistentlyRandomElements = new ArrayList<Integer>();
+        FCommonRandomElements = new CopyOnWriteArrayList<Integer>();
+        FCommonConsistentlyRandomElements = new CopyOnWriteArrayList<Integer>();
         FCount = 0;
         FMaxValue = 400;
     }
@@ -88,7 +88,7 @@ public class ElementGenerator {
         FillConsistentlyRandom(FCommonConsistentlyRandomElements);
     }
 
-    public void Fill(Scenarios aScenario, ArrayList<Integer> aElements) {
+    public void Fill(Scenarios aScenario, CopyOnWriteArrayList<Integer> aElements) {
         switch(aScenario){
             case Scenario1:
                 FillDescending(aElements);

@@ -3,6 +3,8 @@ package Classify;
 import Uniwork.Misc.NGLogEntry;
 
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import static java.lang.Thread.sleep;
 
 public class SortAlgorithm {
@@ -12,12 +14,12 @@ public class SortAlgorithm {
     protected Boolean FInterrupted;
     protected Boolean FTerminated;
     protected Boolean FSorted;
-    protected ArrayList<Integer> FElements;
+    protected CopyOnWriteArrayList<Integer> FElements;
     protected List FEventListeners;
     protected Integer FSortSteps;
     protected long FStartTime;
     protected long FEndTime;
-    protected ArrayList<NGLogEntry> FLogEntries;
+    protected CopyOnWriteArrayList<NGLogEntry> FLogEntries;
 
     protected void DoExecute() throws Exception{
         OneStepSorted();
@@ -110,7 +112,7 @@ public class SortAlgorithm {
 
     public SortAlgorithm() {
         FEventListeners= new ArrayList();
-        FLogEntries = new ArrayList<NGLogEntry>();
+        FLogEntries = new CopyOnWriteArrayList<NGLogEntry>();
         FInProgress = false;
         FInterrupted = false;
         FTerminated = false;
@@ -125,12 +127,12 @@ public class SortAlgorithm {
         return(FDescription);
     }
 
-    public void SetElements(ArrayList<Integer> aValue) {
+    public void SetElements(CopyOnWriteArrayList<Integer> aValue) {
         FElements = aValue;
         FSorted = false;
     }
 
-    public ArrayList<Integer> GetElements() {
+    public CopyOnWriteArrayList<Integer> GetElements() {
         return(FElements);
     }
 

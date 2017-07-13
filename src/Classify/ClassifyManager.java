@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ClassifyManager implements NGTickListener {
 
@@ -22,7 +23,7 @@ public class ClassifyManager implements NGTickListener {
     protected Boolean FInitialized;
     protected Boolean FTickGeneratorEnabled;
     protected ClassifyControllerStageController FStageController;
-    protected ArrayList<ClassifyItem> FItems;
+    protected CopyOnWriteArrayList<ClassifyItem> FItems;
     protected ElementGenerator FElementGenerator;
     protected ClassifyConfigLoader FConfigLoader;
     protected NGTickGenerator FTickGenerator;
@@ -82,7 +83,7 @@ public class ClassifyManager implements NGTickListener {
     }
 
     public ClassifyManager(Main aApplication) {
-        FItems = new ArrayList<ClassifyItem>();
+        FItems = new CopyOnWriteArrayList<ClassifyItem>();
         FConfigLoader = new ClassifyConfigLoader(this);
         FElementGenerator = new ElementGenerator();
         FElementGenerator.SetCount(42);

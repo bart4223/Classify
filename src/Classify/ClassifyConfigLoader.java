@@ -14,16 +14,16 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ClassifyConfigLoader {
 
     protected ClassifyManager FManager;
     protected Stage FStage;
     protected Stage FHelpStage;
-    protected ArrayList<NGLogEntry> FLogEntries;
+    protected CopyOnWriteArrayList<NGLogEntry> FLogEntries;
     protected ClassifyConfigStageController FStageController;
     protected ClassifyConfigHelpStageController FHelpStageController;
     protected Document FDocument;
@@ -105,8 +105,8 @@ public class ClassifyConfigLoader {
         return (GetDocumentElementValueByNameAsBoolean("TickGenerator/Enabled"));
     }
 
-    protected ArrayList<ClassifyItem> GetConfigItems() {
-        ArrayList<ClassifyItem> lResult = new ArrayList<ClassifyItem>();
+    protected CopyOnWriteArrayList<ClassifyItem> GetConfigItems() {
+        CopyOnWriteArrayList<ClassifyItem> lResult = new CopyOnWriteArrayList<ClassifyItem>();
         NodeList lNodes = GetDocumentElementsByName("Items/Item");
         if (lNodes != null) {
             for (int i=0;i<lNodes.getLength();i++) {
@@ -179,7 +179,7 @@ public class ClassifyConfigLoader {
 
     public ClassifyConfigLoader(ClassifyManager aManager) {
         FManager = aManager;
-        FLogEntries = new ArrayList<NGLogEntry>();
+        FLogEntries = new CopyOnWriteArrayList<NGLogEntry>();
     }
 
     public void Initialize() {
@@ -209,7 +209,7 @@ public class ClassifyConfigLoader {
         if (LoadXMLDocument(aXML)) {
             String lDesc;
             Integer lCount = 0;
-            ArrayList<ClassifyItem> lItems;
+            CopyOnWriteArrayList<ClassifyItem> lItems;
             FManager.UnRegisterClassifyItems();
             lDesc = GetConfigDescription();
             lItems = GetConfigItems();
